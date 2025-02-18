@@ -16,23 +16,24 @@
 	<div class="row col-md-8 offset-md-2">
 		<!-- contents 내용 작성 -->
 		<h1>상품 등록 페이지</h1>
+		<form action="./add" method="post">
 		<div class="mb-3">
 		  <label for="exampleFormControlInput1" class="form-label">상품명</label>
-		  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="상품의 이름을 기입하세요.">
+		  <input type="text" name="productName" class="form-control" id="exampleFormControlInput1" placeholder="상품의 이름을 기입하세요.">
 		</div>
 		<div class="mb-3">
 		  <label for="exampleFormControlTextarea1" class="form-label">상세 내용</label>
-		  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+		  <textarea class="form-control" name="productDetail" id="exampleFormControlTextarea1" rows="3"></textarea>
 		</div>
 		<div class="mb-3">
 			<p>
 		      <label for="date">기간</label><br>
-		      <input type="date" id="date" style="width: 428px; ">
+		      <input type="date" name="productDate" id="date" style="width: 428px; ">
 		    </p>
 		</div>
 		
 		<label for="volume">이자율</label>
-		<input type="range" id="volume" min="0" max="3" step="0.1">
+		<input type="range" name="productRate" id="volume" min="0" max="3" step="0.1">
 		<p style="color: red;">값: <output for="volume" id="volume-output"></output></p>
 		<script>
 		    const value = document.querySelector("#volume-output");
@@ -43,7 +44,7 @@
 		    });
 		</script>
 		<div class="mb-3" style="justify-content: between">
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+		<button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 		  등록
 		</button>
 		
@@ -55,13 +56,15 @@
 		        상품 등록에 성공하였습니다!
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><a href="./list">닫기</a></button>
+		        <a class="btn btn-secondary" href="./list">닫기</a>
 		      </div>
 		    </div>
 		  </div>
 		</div>
 		<a class="btn btn-danger" href="./list">등록 취소</a>		
 		</div>
+		
+		</form>
 	</div>
 </div>
 
