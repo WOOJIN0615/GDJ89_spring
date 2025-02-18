@@ -3,6 +3,27 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 객체 생성 -->
+	<!-- 클래스명 참조변수명 = new 생성자(); -->
+	<bean class="com.woojin.app.robots.Robot" name="robot">
+		<!-- 매개변수가 있는 생성자 사용 -->
+		<!-- 매개변수의 순서 번호로 값을 대입 -->
+		<constructor-arg index="0" ref="la"></constructor-arg>
+		<!-- 매개변수의 타입으로 찾아서 값을 대입 -->
+		<constructor-arg type="Integer" value="20"></constructor-arg>
+		<!-- 매개변수의 변수명을 찾아서 값을 대입 -->
+		<constructor-arg name="ra" ref="ra"></constructor-arg>
+		<constructor-arg name="name" value="name"></constructor-arg>
+		
+		<!-- setter 호출 -->
+		<!-- ref => String을 제외한 reference type -->
+		<property name="la" ref="la"></property>
+		<property name="ra" ref="ra"></property>
+		<!-- value => primitive type or String -->
+		<property name="name" value="월E"></property>
+		<property name="age" value="100"></property>
+	</bean>
+	<bean class="com.woojin.app.parts.LeftArm" name="la"></bean>
+	<bean class="com.woojin.app.parts.RightArm" name="ra"></bean>
 		
 </beans>
