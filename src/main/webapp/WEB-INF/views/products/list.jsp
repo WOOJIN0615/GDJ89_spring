@@ -14,33 +14,25 @@
 
 <div class="container-fluid my-5">
 	<div class="row col-md-8 offset-md-2">
+	<h1>상품 정보 페이지</h1>
 		<table class="table">
 			  <thead>
 			    <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">First</th>
-			      <th scope="col">Last</th>
-			      <th scope="col">AGE</th>
+			      <th>#</th>
+			      <th>상품명</th>
+			      <th>이자율</th>
+			      <th>상세내용</th>
 			    </tr>
 			  </thead>
 			  <tbody>
+			  <c:forEach items="${list}" var="v">
 			    <tr>
-			      <th scope="row">1</th>
-			      <td>JUNG</td>
-			      <td>WOOJIN</td>
-			      <td>25</td>
+			      <td>${v.productNum}</td>
+			      <td><a style="color:black; text-decoration: none" href="./detail.do?productName=${v.productName}">${v.productName}</a></td>
+			      <td>${v.productRate}%</td>
+			      <td>${v.productDetail}</td>
 			    </tr>
-			    <tr>
-			      <th scope="row">2</th>
-			      <td>WIN</td>
-			      <td>TER</td>
-			      <td>25</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">3</th>
-			      <td colspan="2">Larry the Bird</td>
-			      <td>@twitter</td>
-			    </tr>
+			  </c:forEach>
 			  </tbody>
 			</table>
 			<a class="btn btn-success" href="./add">상품 등록</a>

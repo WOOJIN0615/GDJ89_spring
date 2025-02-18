@@ -1,7 +1,12 @@
 package com.woojin.app.products;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class ProductService {
@@ -11,8 +16,28 @@ public class ProductService {
 	
 
 	//list
-	public void getList() throws Exception {
-		productDAO.getList();
+	public List<ProductDTO> getList() throws Exception {
+		List<ProductDTO> ar=productDAO.getList();
 		System.out.println("Service List");
+		
+		return ar;
 	}
+	
+	//add
+	public int add(ProductDTO productDTO) throws Exception {
+		int result = 1;
+		
+		result = productDAO.add(productDTO);
+		
+		
+		return result;
+	}
+	
+	//detail
+	public ProductDTO detail(ProductDTO productDTO) throws Exception {
+		productDTO = productDAO.detail(productDTO);
+		
+		return productDTO;
+	}
+
 }

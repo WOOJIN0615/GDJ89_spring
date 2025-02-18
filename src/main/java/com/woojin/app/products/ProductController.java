@@ -1,9 +1,12 @@
 package com.woojin.app.products;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,17 +17,26 @@ public class ProductController {
 	@Autowired
 	private ProductService productService; 
 	
+	/**
+	 * Model -> requestScope와 Lifecycle이 비슷
+	 * 응답이 발생하면 소멸
+	 * request와 비슷한 작업을 수행
+	 * java > jsp로 데이터를 전달할 때 사용
+	 */
+	
+	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String getList() throws Exception {
+	public String getList(Model model) throws Exception {
 		System.out.println("product list");
-		productService.getList();
+		List<ProductDTO> ar=productService.getList();
+		model.addAttribute("list", ar);
+		
 		return "products/list";
 	}
 
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail() throws Exception {
+	public String getDetail(String productName) throws Exception {
 		System.out.println("product detail");
-		
 		return "products/detail";
 	}
 	
@@ -46,13 +58,11 @@ public class ProductController {
 		 * 3. 매개변수로 Bean(DTO)를 선언
 		 *    파라미터의 이름과 타입이 DTO의 Setter의 이름과 동일
 		 */
+		int result=productService.add(productDTO);
 		
-		System.out.println("ProductName : "+productDTO.getProductName());
-		System.out.println("ProductRate : "+productDTO.getProductRate());
-		return "products/add";
+		
+		//return "products/add";
+		return "redirect:./list";
 	}
 	
-	
-	
-
 }

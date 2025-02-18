@@ -2,6 +2,9 @@ package com.woojin.app.products;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ProductDTO {
 	
 	private Long productNum;
