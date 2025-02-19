@@ -41,11 +41,12 @@ public class ProductDAO {
 		int result = 0;
 		Connection conn = DBConnection.getConnection();
 		String sql = "INSERT INTO PRODUCTS (PRODUCTNUM, PRODUCTNAME, PRODUCTRATE, PRODUCTDETAIL, PRODUCTDATE)"
-				+" VALUES (PRODUCTNUM_SEQ.NEXTVAL, ?, ?, ?, SYSDATE)";
+				+" VALUES (PRODUCTNUM_SEQ.NEXTVAL, ?, ?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, productDTO.getProductName());
 		ps.setDouble(2, productDTO.getProductRate());
 		ps.setString(3, productDTO.getProductDetail());
+		ps.setDate(4, productDTO.getProductDate());
 		
 		result = ps.executeUpdate();
 		
@@ -56,26 +57,24 @@ public class ProductDAO {
 	
 	public ProductDTO detail(ProductDTO productDTO) throws Exception {
 		Connection conn = DBConnection.getConnection();
-		String sql = "SELECT * FROM PRODUCTS WHERE PRODUCTNAME=?";
+		String sql = "SELECT * FROM PRODUCTS WHERE PRODUCTNUM=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
+		
+		ps.setLong(1, productDTO.getProductNum());
+		
 		ResultSet rs = ps.executeQuery();
-		
-		ps.setString(1, productDTO.getProductName());
-		
 		if (rs.next()) {
 			productDTO.setProductNum(rs.getLong("productNum"));
 			productDTO.setProductName(rs.getString("productName"));
 			productDTO.setProductRate(rs.getDouble("productRate"));
 			productDTO.setProductDetail(rs.getString("productDetail"));
 			productDTO.setProductDate(rs.getDate("productDate"));
-		}else {
-			productDTO=null;
 		}
 		
 		DBConnection.disConnection(rs, ps, conn);
 		
 		return productDTO;
-		
-		
 	}
+	
+	
 }

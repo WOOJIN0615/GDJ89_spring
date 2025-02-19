@@ -21,16 +21,16 @@
 			      <th>#</th>
 			      <th>상품명</th>
 			      <th>이자율</th>
-			      <th>상세내용</th>
+			      <th>기간</th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			  <c:forEach items="${list}" var="v">
 			    <tr>
 			      <td>${v.productNum}</td>
-			      <td><a style="color:black; text-decoration: none" href="./detail.do?productName=${v.productName}">${v.productName}</a></td>
+			      <td><a style="color:black; text-decoration: none" href="./detail.do?productNum=${v.productNum}">${v.productName}</a></td>
 			      <td>${v.productRate}%</td>
-			      <td>${v.productDetail}</td>
+			      <td>${v.productDate}</td>
 			    </tr>
 			  </c:forEach>
 			  </tbody>

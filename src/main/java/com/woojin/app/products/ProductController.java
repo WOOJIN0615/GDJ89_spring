@@ -35,8 +35,11 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail(String productName) throws Exception {
+	public String getDetail(ProductDTO productDTO, Model model) throws Exception {
 		System.out.println("product detail");
+		productDTO = productService.detail(productDTO);
+		model.addAttribute("dto", productDTO);
+		
 		return "products/detail";
 	}
 	
@@ -59,7 +62,7 @@ public class ProductController {
 		 *    파라미터의 이름과 타입이 DTO의 Setter의 이름과 동일
 		 */
 		int result=productService.add(productDTO);
-		
+		System.out.println(productDTO.getProductDate().toString());
 		
 		//return "products/add";
 		return "redirect:./list";
