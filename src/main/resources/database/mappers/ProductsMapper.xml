@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace의 중복 X 다른 mapper의 namespace와 중복 X -->
+  <!-- 사용하는 DAO의 패키지명.클래스명을 주로 사용 -->
+  <mapper namespace="com.woojin.app.products.ProductDAO">
+  	<!-- DAO의 메서드명을 ID값으로 사용 -->
+  	<select id="detail" resultType="com.woojin.app.products.ProductDTO" parameterType="com.woojin.app.products.ProductDTO">
+  	<!-- ResultType => 컬럼명과 DTO의 setter의 이름과 같은 것을 맵핑 -->
+  	<!-- ? 값 #{getter의 이름, DTO가 아닐때는 변수명} -->
+  	<!-- map #{map의 키}, 배열 또는 리스트 #{index 번호} -->
+  		SELECT * FROM PRODUCTS WHERE PRODUCTNUM=#{productNum}
+  	</select>
+  	<select id="getlist" resultType="com.woojin.app.products.ProductDTO">
+  		SELECT * FROM PRODUCTS ORDER BY PRODUCTNUM ASC
+  	</select>
+  	<insert id="add" parameterType="com.woojin.app.products.ProductDTO">
+  		INSERT INTO PRODUCTS (PRODUCTNUM, PRODUCTNAME, PRODUCTRATE, PRODUCTDETAIL, PRODUCTDATE) 
+  		VALUES (PRODUCTNUM_SEQ.NEXTVAL, #{productName}, #{productRate}, #{productDetail}, #{productDate})
+  	</insert>
+  	<update id="update" parameterType="com.woojin.app.products.ProductDTO">
+  		UPDATE PRODUCTS SET PRODUCTNUM=#{productNum}, PRODUCTNAME=#{productName}, PRODUCTRATE=#{productRate}, PRODUCTDETAIL=#{productDetail}, PRODUCTDATE=#{productDate}
+  		WHERE PRODUCTNUM=#{productNum}
+  	</update>
+  	<delete id="delete" parameterType="com.woojin.app.products.ProductDTO">
+  		DELETE PRODUCTS WHERE PRODUCTNUM=#{productNum}
+  	</delete>
+  	
+  </mapper>
+  

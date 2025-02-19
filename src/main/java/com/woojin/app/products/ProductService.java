@@ -39,5 +39,15 @@ public class ProductService {
 		
 		return productDTO;
 	}
+	
+	public int update(ProductDTO productDTO) throws Exception {
+		System.out.println("Service Update");
+		return productDAO.update(productDTO);
+	
+	}
+	
+	public int delete(ProductDTO productDTO) throws Exception {
+		return productDAO.delete(productDTO);
+	}
 
 }
