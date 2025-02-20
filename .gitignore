@@ -5,6 +5,7 @@
 DBConnection.java
 database.properties
 database-context.xml
+database.properties
 
 ### Eclipse ###
 .metadata
