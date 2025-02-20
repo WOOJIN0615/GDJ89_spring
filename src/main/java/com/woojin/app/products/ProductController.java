@@ -95,10 +95,10 @@ public class ProductController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public String delete(ProductDTO productDTO) throws Exception {
-		int result = productService.delete(productDTO);
-		return "redirect:./list";
-	}
+//	@RequestMapping(value = "delete", method = RequestMethod.POST)
+//	public String delete(ProductDTO productDTO) throws Exception {
+//		int result = productService.delete(productDTO);
+//		return "redirect:./list";
+//	}
 	
 }

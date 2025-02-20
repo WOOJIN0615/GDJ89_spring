@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.woojin.app.users.UserDAO">
+  	<select id="detail" resultType="com.woojin.app.users.UserDTO" parameterType="com.woojin.app.users.UserDTO">
+  		SELECT * FROM USERS WHERE USERNAME=#{username,jdbcType=VARCHAR}
+  	</select>
+  	<insert id="join" parameterType="com.woojin.app.users.UserDTO">
+  		INSERT INTO USERS VALUES (#{username}, #{password}, #{name}, #{phone}, #{email})
+  	</insert>
+	<update id="update" parameterType="com.woojin.app.users.UserDTO">
+  		UPDATE USERS SET USERNAME=#{username}, PASSWORD=#{password}, NAME=#{name}, PHONE=#{phone}, EMAIL=#{email}
+  		WHERE USERNAME=#{username}
+  	</update>
+  	<delete id="delete" parameterType="com.woojin.app.users.UserDTO">
+  		DELETE USERS WHERE USERNAME=#{username}
+  	</delete>
+  	
+  
+  </mapper>

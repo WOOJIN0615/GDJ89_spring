@@ -1,4 +1,4 @@
-package com.woojin.app.products;
+	package com.woojin.app.products;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,8 +24,6 @@ public class ProductDAO {
 
 	public List<ProductDTO> getList() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getlist");
-		
-		
 	}
 	
 	public int add(ProductDTO productDTO) throws Exception {
