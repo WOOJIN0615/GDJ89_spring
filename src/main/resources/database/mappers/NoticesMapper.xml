@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.woojin.app.notices.NoticeDAO">
+  	<select id="getList" resultType="NoticeDTO">
+  		SELECT * FROM NOTICES ORDER BY BOARDNUM DESC
+  	</select>
+  	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+  		SELECT * FROM NOTICES WHERE BOARDNUM=#{boardNum}
+  	</select>
+  	<insert id="add" parameterType="NoticeDTO">
+  		INSERT INTO NOTICES 
+  			(BOARDNUM, BOARDTITLE, BOARDDATE, BOARDCONTENTS, BOARDHIT, USERNAME)
+  		VALUES
+  			(BOARD_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName})	
+  	</insert>
+  	<update id="update" parameterType="NoticeDTO">
+  		UPDATE NOTICES SET
+  			BOARDTITLE=#{boardTitle},
+  			BOARDCONTENTS=#{boardContents}
+  		WHERE BOARDNUM =#{boardNum}	
+  	</update>
+  	<delete id="delete" parameterType="NoticeDTO">
+  		DELETE NOTICES WHERE BOARDNUM =#{boardNum}
+  	</delete>
+  	
+  	<update id="updateHit" parameterType="NoticeDTO">
+  		UPDATE NOTICES SET BOARDHIT=BOARDHIT+1
+  		WHERE BOARDNUM=#{boardNum}
+  	</update>
+  	
+  	
+  
+	
+  </mapper>

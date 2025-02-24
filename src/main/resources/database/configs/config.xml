@@ -8,5 +8,8 @@
 	<typeAliases>
 		<typeAlias type="com.woojin.app.users.UserDTO" alias="UserDTO"/>
 		<typeAlias type="com.woojin.app.products.ProductDTO" alias="ProductDTO"/>
+		<typeAlias type="com.woojin.app.notices.NoticeDTO" alias="NoticeDTO"/>
+		<typeAlias type="com.woojin.app.pages.Pager" alias="Pager"/>
+		<typeAlias type="java.util.Map" alias="Map"/>
 	</typeAliases>
 </configuration>

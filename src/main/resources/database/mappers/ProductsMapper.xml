@@ -13,8 +13,14 @@
   	<!-- map #{map의 키}, 배열 또는 리스트 #{index 번호} -->
   		SELECT * FROM PRODUCTS WHERE PRODUCTNUM=#{productNum}
   	</select>
-  	<select id="getlist" resultType="com.woojin.app.products.ProductDTO">
-  		SELECT * FROM PRODUCTS ORDER BY PRODUCTNUM ASC
+  	<select id="getlist" parameterType="Pager" resultType="com.woojin.app.products.ProductDTO">
+  		SELECT * FROM 
+		(SELECT rownum r, M.* FROM 
+		(SELECT * FROM products ORDER BY productnum desc) M)
+		WHERE r BETWEEN #{startNum} AND #{endNum}
+  	</select>
+  	<select id="count" resultType="Long">
+  		SELECT COUNT(productnum) FROM products
   	</select>
   	<insert id="add" parameterType="com.woojin.app.products.ProductDTO">
   		INSERT INTO PRODUCTS (PRODUCTNUM, PRODUCTNAME, PRODUCTRATE, PRODUCTDETAIL, PRODUCTDATE) 

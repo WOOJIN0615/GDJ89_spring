@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.woojin.app.pages.Pager;
 import com.woojin.app.util.DBConnection;
 
 @Repository
@@ -21,9 +22,14 @@ public class ProductDAO {
 	
 	@Autowired
 	private ProductDTO productDTO;
+	
 
-	public List<ProductDTO> getList() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getlist");
+	public List<ProductDTO> getList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getlist", pager);
+	}
+	
+	public Long count() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"count");
 	}
 	
 	public int add(ProductDTO productDTO) throws Exception {

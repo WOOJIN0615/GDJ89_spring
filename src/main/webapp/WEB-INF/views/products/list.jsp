@@ -35,6 +35,25 @@
 			  </c:forEach>
 			  </tbody>
 			</table>
+			<div >
+			<nav aria-label="Page navigation example" style="width: 300px; margin: 0px auto;">
+  			<ul class="pagination">
+  			  <li class="page-item">
+   			   <a class="page-link" href="./list?page=${pager.start-1}" aria-label="Previous">
+   		     <span aria-hidden="true">&laquo;</span>
+   			   </a>
+		    </li>
+		    <c:forEach begin="${pager.start}" end="${pager.end}" var="i">
+		    	<li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+		    </c:forEach>
+		    <li class="page-item">
+		      <a class="page-link" href="./list?page=${pager.end+1}" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		  </ul>
+			</nav>
+			</div>
 			<a class="btn btn-success" href="./add">상품 등록</a>
 	</div>
 </div>

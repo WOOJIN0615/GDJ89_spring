@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.woojin.app.pages.Pager;
+
 @Service
 public class ProductService {
 	
@@ -16,8 +18,39 @@ public class ProductService {
 	
 
 	//list
-	public List<ProductDTO> getList() throws Exception {
-		List<ProductDTO> ar=productDAO.getList();
+	public List<ProductDTO> getList(Pager pager) throws Exception {
+		//Pager pager = new Pager();
+		//pager.setPage(page);
+		
+		Long total=productDAO.count();
+		
+		//1. Totalpage
+		Long totalpage = total/10;
+		if (total%10!=0) {
+			totalpage++;
+		}
+		
+		//2. TotalBlock
+		Long totalBlock = totalpage/5;
+		if (totalpage % 5 !=0) {
+			totalBlock++;
+		}
+		
+		//3. page번호로 block번호 구하기
+		Long curBlock = pager.getPage()/5;
+		if (pager.getPage()%5!=0) {
+			curBlock++;
+		}
+		
+		//4. Block번호로 시작번호, 끝번호 계산
+		Long start = (curBlock-1)*5+1;
+		Long end = curBlock*5;
+		
+		pager.setStart(start);
+		pager.setEnd(end);
+		
+		pager.makeNum();
+		List<ProductDTO> ar=productDAO.getList(pager);
 		System.out.println("Service List");
 		
 		return ar;
