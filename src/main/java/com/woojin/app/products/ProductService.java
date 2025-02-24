@@ -38,8 +38,6 @@ public class ProductService {
 		int result = 1;
 		
 		result = productDAO.add(productDTO);
-		
-		
 		return result;
 	}
 	

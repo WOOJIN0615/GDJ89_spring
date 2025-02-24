@@ -8,6 +8,9 @@ public class Pager {
 
 
 	public String getSearch() {
+		if (search==null) {
+			search="";
+		}
 		return search;
 	}
 
