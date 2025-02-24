@@ -6,11 +6,13 @@ public class Pager {
 	
 
 
+
 	private Long startNum;
 	private Long endNum;
 	private Long page;
 	private Long start;
 	private Long end;
+	private boolean endCheck;
 	
 	//한 페이지당 조회할 row의 갯수
 	private Long perPage;
@@ -70,5 +72,12 @@ public class Pager {
 	
 	public void setEnd(Long end) {
 		this.end = end;
+	}
+	public boolean isEndCheck() {
+		return endCheck;
+	}
+	
+	public void setEndCheck(boolean endCheck) {
+		this.endCheck = endCheck;
 	}
 }

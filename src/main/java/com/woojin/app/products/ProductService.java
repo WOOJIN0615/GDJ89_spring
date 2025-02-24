@@ -49,6 +49,12 @@ public class ProductService {
 		pager.setStart(start);
 		pager.setEnd(end);
 		
+		//5. curBlock이 마지막 Block이라면
+		if (totalBlock==curBlock) {
+			pager.setEnd(totalpage);
+			pager.setEndCheck(true);
+		}
+		
 		pager.makeNum();
 		List<ProductDTO> ar=productDAO.getList(pager);
 		System.out.println("Service List");
