@@ -16,7 +16,20 @@
   	<select id="getlist" parameterType="Pager" resultType="com.woojin.app.products.ProductDTO">
   		SELECT * FROM 
 		(SELECT rownum r, M.* FROM 
-		(SELECT * FROM products ORDER BY productnum desc) M)
+		(SELECT * FROM products WHERE
+		<choose>
+			<when test="kind=='k2'">
+				PRODUCTNAME LIKE LIKE'%'||#(search)||'%'
+			</when>
+			<when test="kind=='k3'">
+				PRODUCTNAME LIKE LIKE'%'||#(search)||'%' 
+				OR PRODUCTDETAIL LIKE'%'||#(search)||'%'
+			</when>
+			<otherwise>
+				PRODUCTNAME LIKE LIKE'%'||#(search)||'%'
+			</otherwise>
+		</choose>
+		 ORDER BY productnum desc) M)
 		WHERE r BETWEEN #{startNum} AND #{endNum}
   	</select>
   	<select id="count" resultType="Long">

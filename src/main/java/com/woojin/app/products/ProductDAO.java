@@ -22,7 +22,6 @@ public class ProductDAO {
 	
 	@Autowired
 	private ProductDTO productDTO;
-	
 
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getlist", pager);

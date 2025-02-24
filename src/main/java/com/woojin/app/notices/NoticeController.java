@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.woojin.app.pages.Pager;
 import com.woojin.app.users.UserDTO;
 
 @Controller
@@ -21,8 +22,9 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	@RequestMapping(value="list", method = RequestMethod.GET)
-	public void getList(Model model)throws Exception{
-		List<NoticeDTO> ar= noticeService.getList();
+	public void getList(Model model, Pager pager)throws Exception{
+		List<NoticeDTO> ar= noticeService.getList(pager);
+		model.addAttribute("pager", pager);
 		model.addAttribute("list", ar);
 	}
 	

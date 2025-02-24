@@ -15,6 +15,8 @@
 <div class="container-fluid my-5">
 	<div class="row col-md-8 offset-md-2">
 		<!-- contents 내용 작성 -->
+		<h1>${dto.boardTitle}</h1>
+		<p>${user.username}</p>
 	</div>
 </div>
 

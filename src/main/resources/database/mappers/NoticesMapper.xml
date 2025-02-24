@@ -4,11 +4,17 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.woojin.app.notices.NoticeDAO">
-  	<select id="getList" resultType="NoticeDTO">
-  		SELECT * FROM NOTICES ORDER BY BOARDNUM DESC
+  	<select id="getList" parameterType="Pager" resultType="NoticeDTO">
+  		SELECT * FROM 
+		(SELECT rownum r, M.* FROM 
+		(SELECT * FROM notices ORDER BY boardnum desc) M)
+		WHERE r BETWEEN #{startNum} AND #{endNum}
   	</select>
   	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
   		SELECT * FROM NOTICES WHERE BOARDNUM=#{boardNum}
+  	</select>
+  	<select id="count" resultType="Long">
+  		SELECT COUNT(boardnum) FROM NOTICES
   	</select>
   	<insert id="add" parameterType="NoticeDTO">
   		INSERT INTO NOTICES 

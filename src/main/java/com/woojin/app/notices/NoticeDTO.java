@@ -10,6 +10,8 @@ public class NoticeDTO {
 	private String boardContents;
 	private Long boardHit;
 	private String userName;
+	
+	
 	public Long getBoardNum() {
 		return boardNum;
 	}
