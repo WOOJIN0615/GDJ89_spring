@@ -40,7 +40,7 @@
 		<button type="submit" id="add_button" class="btn btn-primary">
 		  등록
 		</button>
-		
+		</div>
 		
 		</form>
 	</div>

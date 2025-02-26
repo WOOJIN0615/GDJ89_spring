@@ -24,7 +24,7 @@
 		</div>
 		<div class="mb-3">
 		  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-		  <textarea class="form-control" name="boardContents" id="exampleFormControlTextarea1" rows="15" value="${dto.boardContents}"></textarea>
+		  <textarea class="form-control" name="boardContents" id="exampleFormControlTextarea1" rows="3" value="${dto.boardContents}"></textarea>
 		</div>
 		<div class="mb-3" style="justify-content: between">
 		<button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

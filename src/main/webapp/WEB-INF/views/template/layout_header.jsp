@@ -26,6 +26,9 @@
 			          <a class="nav-link" href="/products/list">Products</a>
 			        </li>
 			        <li class="nav-item">
+			          <a class="nav-link" href="/qna/list">QNA</a>
+			        </li>
+			        <li class="nav-item">
 			          <a class="nav-link" href="/notices/list">Notices</a>
 			        </li>
 			        <li class="nav-item dropdown">

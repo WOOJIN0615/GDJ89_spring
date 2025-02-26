@@ -19,7 +19,7 @@
 		<h3>${dto.boardDate}</h3>
 		<div class="mb-3">
 		  <label for="exampleFormControlTextarea1" class="form-label"></label>
-		  <textarea style="height: 350px" class="form-control" name="boardContents" id="exampleFormControlTextarea1" rows="3" placeholder="${dto.boardContents}" disabled readonly></textarea>
+		  <textarea style="height: 350px" class="form-control" name="productDetail" id="exampleFormControlTextarea1" rows="3" placeholder="${dto.boardContents}" disabled readonly></textarea>
 		</div>
 		<div class="mb-3" style="justify-content: between">
 			<form id="frm" action="/test">

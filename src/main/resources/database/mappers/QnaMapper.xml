@@ -3,13 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.woojin.app.notices.NoticeDAO">
-  	<select id="getList" parameterType="Pager" resultType="NoticeDTO">
+  <mapper namespace="com.woojin.app.qna.QnaDAO">
+  	<select id="getList" parameterType="Pager" resultType="QnaDTO">
   		SELECT * FROM 
 			(SELECT ROWNUM R, M.* FROM 
 				(
 					SELECT * 
-					FROM NOTICES 
+					FROM QNA 
 					WHERE 
 					<!-- #사용하지 않음 -->
 					<choose>
@@ -30,30 +30,30 @@
 			 )
 		WHERE R BETWEEN #{startNum} AND #{endNum}
   	</select>
-  	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
-  		SELECT * FROM NOTICES WHERE BOARDNUM=#{boardNum}
+  	<select id="getDetail" parameterType="QnaDTO" resultType="QnaDTO">
+  		SELECT * FROM QNA WHERE BOARDNUM=#{boardNum}
   	</select>
   	<select id="count" resultType="Long">
-  		SELECT COUNT(boardnum) FROM NOTICES
+  		SELECT COUNT(boardnum) FROM QNA
   	</select>
-  	<insert id="add" parameterType="NoticeDTO">
-  		INSERT INTO NOTICES 
-  			(BOARDNUM, BOARDTITLE, BOARDDATE, BOARDCONTENTS, BOARDHIT, USERNAME)
+  	<insert id="add" parameterType="QnaDTO">
+  		INSERT INTO QNA 
+  			(BOARDNUM, BOARDTITLE, BOARDDATE, BOARDCONTENTS, BOARDHIT, USERNAME, BOARDREF, BOARDSTEP, BOARDDEPTH)
   		VALUES
-  			(BOARD_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName})	
+  			(BOARD_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName}, 0, 0, 0)	
   	</insert>
-  	<update id="update" parameterType="NoticeDTO">
-  		UPDATE NOTICES SET
+  	<update id="update" parameterType="QnaDTO">
+  		UPDATE QNA SET
   			BOARDTITLE=#{boardTitle},
   			BOARDCONTENTS=#{boardContents}
   		WHERE BOARDNUM =#{boardNum}	
   	</update>
-  	<delete id="delete" parameterType="NoticeDTO">
-  		DELETE NOTICES WHERE BOARDNUM =#{boardNum}
+  	<delete id="delete" parameterType="QnaDTO">
+  		DELETE QNA WHERE BOARDNUM =#{boardNum}
   	</delete>
   	
-  	<update id="updateHit" parameterType="NoticeDTO">
-  		UPDATE NOTICES SET BOARDHIT=BOARDHIT+1
+  	<update id="updateHit" parameterType="QnaDTO">
+  		UPDATE QNA SET BOARDHIT=BOARDHIT+1
   		WHERE BOARDNUM=#{boardNum}
   	</update>
   	
