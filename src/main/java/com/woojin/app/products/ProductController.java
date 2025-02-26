@@ -91,6 +91,13 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public String delete(ProductDTO productDTO) throws Exception {
+		int result = productService.delete(productDTO);
+		
+		return "redirect:./list";
+	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public ModelAndView delete(ProductDTO productDTO, ModelAndView mv) throws Exception {
 		mv.setViewName("products/delete");
 		mv.addObject("dto", productService.delete(productDTO));

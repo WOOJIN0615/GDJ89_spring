@@ -18,15 +18,15 @@
 		<h1>상품을 삭제하시겠습니까?</h1><br><br><br>
 		<h3>삭제하신 상품은 복구하실 수 없습니다.</h3><br><br><br>
 		<form action="./delete" method="post">
-			<input type="hidden" name="productNum" value="${dto.productNum}">
+			<input type="hidden" name="productNum" value="${list.productNum}">
 			
-			<input type="hidden" name="productName" value="${dto.productName}">
+			<input type="hidden" name="productName" value="${list.productName}">
 			
-			<input type="hidden" name="productDetail" value="${dto.productDetail}">
+			<input type="hidden" name="productDetail" value="${list.productDetail}">
 			
-			<input type="hidden" name="productDate" value="${dto.productDate}">
+			<input type="hidden" name="productDate" value="${list.productDate}">
 			
-			<input type="hidden" name="productRate" value="${dto.productRate}">
+			<input type="hidden" name="productRate" value="${list.productRate}">
 			<div class="mb-3" style="justify-content: between">
 				<button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
 				  삭제

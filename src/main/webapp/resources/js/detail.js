@@ -20,7 +20,7 @@ up.addEventListener("click", function(){
 del.addEventListener("click", function(){
     console.log("삭제");
     console.log(frm.action);
-    let check = confirm("정말 삭제하시겠습니까?");
+    let check = confirm("정말 삭제하시겠습니까?");  
     frm.action="./delete";
     frm.method="POST";
     frm.submit();
