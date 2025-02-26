@@ -24,13 +24,16 @@
 		<label for="exampleFormControlInput1" class="form-label">이자율</label>
 		<input class="form-control" type="text" name="productRate" value="${dto.productRate}" aria-label="Disabled input example" disabled readonly><hr>
 		<div class="mb-3" style="justify-content: between">
-			<a class="btn btn-primary" href="./update?productNum=${dto.productNum}">수정</a>
-			<a class="btn btn-danger" href="./delete?productNum=${dto.productNum}">삭제</a>	
+			<form id="frm" action="/test">
+				<input type="hidden" name="productNum" value="${dto.productNum}">
+				<button type="button" id="up" class="btn btn-primary">수정</button>
+				<button type="button" id="del" class="btn btn-danger">삭제</button>
+			</form>
 		</div>
 	</div>
 </div>
-
 <c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/template/boot_jsp.jsp"></c:import>
+<script src="/resources/js/detail.js"></script>
 </body>
 </html>

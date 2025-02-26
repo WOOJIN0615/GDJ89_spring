@@ -90,10 +90,10 @@ public class ProductController {
 		return "redirect:./list";
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public ModelAndView delete(ProductDTO productDTO, ModelAndView mv) throws Exception {
 		mv.setViewName("products/delete");
-		mv.addObject("dto", productService.detail(productDTO));
+		mv.addObject("dto", productService.delete(productDTO));
 		
 		return mv;
 	}
