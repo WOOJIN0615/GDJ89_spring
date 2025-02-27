@@ -6,6 +6,7 @@
 const up = document.getElementById("up");
 const del = document.getElementById("del");
 const frm = document.getElementById("frm");
+const rep = document.getElementById("rep");
 
 
 
@@ -23,5 +24,11 @@ del.addEventListener("click", function(){
     let check = confirm("정말 삭제하시겠습니까?");  
     frm.action="./delete";
     frm.method="POST";
+    frm.submit();
+})
+
+rep.addEventListener("click", function(){
+    console.log(frm.getAttribute("method"));
+    frm.action="./reply";
     frm.submit();
 })

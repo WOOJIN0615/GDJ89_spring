@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.woojin.app.notices.NoticeDAO">
+  <mapper namespace="com.woojin.app.boards.notices.NoticeDAO">
   	<select id="getList" parameterType="Pager" resultType="NoticeDTO">
   		SELECT * FROM 
 			(SELECT ROWNUM R, M.* FROM 
@@ -40,7 +40,7 @@
   		INSERT INTO NOTICES 
   			(BOARDNUM, BOARDTITLE, BOARDDATE, BOARDCONTENTS, BOARDHIT, USERNAME)
   		VALUES
-  			(BOARD_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName})	
+  			(BOARD_SEQ.NEXTVAL, #{boardTitle,jdbcType=VARCHAR}, sysdate, #{boardContents,jdbcType=VARCHAR}, 0, #{userName,jdbcType=VARCHAR})	
   	</insert>
   	<update id="update" parameterType="NoticeDTO">
   		UPDATE NOTICES SET

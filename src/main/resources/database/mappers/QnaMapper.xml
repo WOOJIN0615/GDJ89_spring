@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.woojin.app.qna.QnaDAO">
+  <mapper namespace="com.woojin.app.boards.qna.QnaDAO">
   	<select id="getList" parameterType="Pager" resultType="QnaDTO">
   		SELECT * FROM 
 			(SELECT ROWNUM R, M.* FROM 
@@ -25,7 +25,7 @@
 						BOARDTITLE LIKE '%'||#{search}||'%'
 						</otherwise>
 					</choose>
-					ORDER BY BOARDNUM DESC
+					ORDER BY BOARDREF DESC, BOARDSTEP ASC
 				 ) M
 			 )
 		WHERE R BETWEEN #{startNum} AND #{endNum}
@@ -34,14 +34,25 @@
   		SELECT * FROM QNA WHERE BOARDNUM=#{boardNum}
   	</select>
   	<select id="count" resultType="Long">
-  		SELECT COUNT(boardnum) FROM QNA
+  		SELECT COUNT(boardNum) FROM QNA
   	</select>
   	<insert id="add" parameterType="QnaDTO">
   		INSERT INTO QNA 
   			(BOARDNUM, BOARDTITLE, BOARDDATE, BOARDCONTENTS, BOARDHIT, USERNAME, BOARDREF, BOARDSTEP, BOARDDEPTH)
   		VALUES
-  			(BOARD_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName}, 0, 0, 0)	
+  			(BOARD_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName}, BOARD_SEQ.CURRVAL, 0, 0)	
   	</insert>
+  	<insert id="reply" parameterType="QnaDTO">
+  	  	INSERT INTO QNA 
+  			(BOARDNUM, BOARDTITLE, BOARDDATE, BOARDCONTENTS, BOARDHIT, USERNAME, BOARDREF, BOARDSTEP, BOARDDEPTH)
+  		VALUES
+  			(BOARD_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName}, #{boardRef}, #{boardStep}, #{boardDepth})	
+  	</insert>
+  	<update id="updateStep" parameterType="QnaDTO">
+  		UPDATE QNA SET
+  			BOARDSTEP = BOARDSTEP+1
+  		WHERE BOARDREF=#{boardRef} AND BOARDSTEP>#{boardStep}
+  	</update>
   	<update id="update" parameterType="QnaDTO">
   		UPDATE QNA SET
   			BOARDTITLE=#{boardTitle},

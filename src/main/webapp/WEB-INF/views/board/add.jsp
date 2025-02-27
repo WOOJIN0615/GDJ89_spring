@@ -19,11 +19,11 @@
 		 <form id="add_form" action="./add" method="post">
 			<div class="mb-3">
 				<label for="exampleFormControlInput1" class="form-label">제목</label>
-				<input type="text" name="productName" class="form-control" id="exampleFormControlInput1 productname" placeholder="제목을 입력하세요.">
+				<input type="text" name="boardTitle" class="form-control" id="exampleFormControlInput1 boardTitle" placeholder="제목을 입력하세요.">
 			  </div>
 			  <div class="mb-3">
 				<label for="exampleFormControlTextarea1" class="form-label">내용</label>
-				<textarea class="form-control" name="productDetail" id="exampleFormControlTextarea1" rows="15"></textarea>
+				<textarea class="form-control" name="boardContents" id="exampleFormControlTextarea1 boardContents" rows="15"></textarea>
 			  </div>
 			  <div class="mb-3" style="justify-content: between">
 		<button type="submit" id="add_button" class="btn btn-primary">
@@ -37,5 +37,6 @@
 
 <c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/template/boot_jsp.jsp"></c:import>
+<script src="/resources/js/add.js"></script>
 </body>
 </html>

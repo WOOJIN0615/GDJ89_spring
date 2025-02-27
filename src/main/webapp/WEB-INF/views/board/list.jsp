@@ -15,7 +15,7 @@
 <div class="container-fluid my-5">
 	<div class="row col-md-8 offset-md-2">
 		<!-- contents 내용 작성 -->
-		<h1>질문게시판</h1>
+		<h1>${kind}</h1>
 		<form action="./list" id="list_form" class="row row-cols-lg-auto g-3 align-items-center">
 	<input type="hidden" name="page" id="pageNum">
   <div class="col-12">
@@ -48,8 +48,14 @@
 			  <c:forEach items="${list}" var="v">
 			    <tr>
 			      <td>${v.boardNum}</td>
-			      <td><a style="color:black; text-decoration: none" href="./detail.do?boardNum=${v.boardNum}">${v.userName}</a></td>
-			      <td>${v.boardTitle}%</td>
+			      <td>
+			      <a style="color:black; text-decoration: none" href="./detail.do?boardNum=${v.boardNum}">${v.userName}</a></td>
+			      <td>
+			      		<c:catch>
+			      		<c:forEach begin="1" end="${v.boardDepth}">--</c:forEach>
+			      		</c:catch>
+			      		${v.boardTitle}
+			      </td>
 			      <td>${v.boardDate}</td>
 			      <td>${v.boardHit}</td>
 			    </tr>

@@ -1,8 +1,8 @@
-package com.woojin.app.notices;
+package com.woojin.app.boards;
 
 import java.sql.Date;
 
-public class NoticeDTO {
+public class BoardDTO {
 	
 	private Long boardNum;
 	private String boardTitle;
@@ -11,7 +11,7 @@ public class NoticeDTO {
 	private Long boardHit;
 	private String userName;
 	
-	
+
 	public Long getBoardNum() {
 		return boardNum;
 	}
@@ -48,7 +48,4 @@ public class NoticeDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-	
-
 }

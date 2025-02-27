@@ -11,7 +11,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.woojin.app.Sample;
-import com.woojin.app.qna.QnaDAO;
+import com.woojin.app.boards.qna.QnaDAO;
+import com.woojin.app.boards.qna.QnaDTO;
 
 public class QnaDAOTest extends Sample {
 	@Autowired
@@ -49,7 +50,7 @@ public class QnaDAOTest extends Sample {
 			qnaDAO.add(qnaDTO);
 			
 			if (i%10==0) {
-				Thread.sleep(1500);
+				Thread.sleep(500);
 			}
 			
 			System.out.println("Finish");

@@ -51,6 +51,12 @@ public class UserController {
 		return "users/login";
 	}
 	
+	@RequestMapping(value = "logout")
+	public String logout(HttpSession session) throws Exception {
+		session.invalidate();
+		return "redirect:../";
+	}
+	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public ModelAndView detail(UserDTO userDTO, ModelAndView mv) throws Exception {
 		userDTO = userService.detail(userDTO);

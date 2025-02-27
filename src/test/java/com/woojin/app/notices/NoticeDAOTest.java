@@ -11,6 +11,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.woojin.app.Sample;
+import com.woojin.app.boards.notices.NoticeDAO;
+import com.woojin.app.boards.notices.NoticeDTO;
 import com.woojin.app.products.ProductDTO;
 
 public class NoticeDAOTest extends Sample {
