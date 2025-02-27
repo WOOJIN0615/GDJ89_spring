@@ -11,7 +11,12 @@
 			    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			        <li class="nav-item">
-			          <a class="nav-link active" aria-current="page" href="/">Home</a>
+			          <a class="nav-link active" aria-current="page" href="/">
+			          	Home
+			          </a>
+			          	<c:if test="${not empty user}">
+			          		<li style="color: white;">${user.username}님, 환영합니다!</li>
+			          	</c:if>
 			        </li>
 			        <c:if test="${empty user}">
 					<li class="nav-item">
@@ -20,7 +25,7 @@
 					</c:if>
 					<c:if test="${not empty user}">
 					<li><a class="nav-link active" aria-current="page" href="users/logout">Logout</a></li>
-					<li><a class="nav-link active" aria-current="page" href="users/detail?username=${user.username}">Mypage</a></li>					
+					<li><a class="nav-link active" aria-current="page" href="users/detail?username=${user.username}">Mypage</a></li>				
 					</c:if>
 			        <li class="nav-item">
 			          <a class="nav-link" href="/products/list">Products</a>
@@ -36,10 +41,10 @@
 			            Dropdown
 			          </a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">Action</a></li>
-			            <li><a class="dropdown-item" href="#">Another action</a></li>
+			            <li><a class="nav-link" href="/products/list">Products</a></li>
+			            <li><a class="nav-link" href="/qna/list">QNA</a></li>
 			            <li><hr class="dropdown-divider"></li>
-			            <li><a class="dropdown-item" href="#">Something else here</a></li>
+			            <li><a class="nav-link" href="/notices/list">Notices</a></li>
 			          </ul>
 			        </li>
 			      </ul>
