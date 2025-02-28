@@ -1,5 +1,7 @@
 package com.woojin.app.users;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -26,8 +29,15 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(UserDTO userDTO) throws Exception {
-		int result = userService.join(userDTO);
+	public String join(UserDTO userDTO, MultipartFile profile, HttpSession session) throws Exception {
+		System.out.println(profile.getContentType());
+		System.out.println(profile.getName());
+		System.out.println(profile.getOriginalFilename());
+		System.out.println(profile.getSize());
+		System.out.println(profile.isEmpty());
+		System.out.println(session.getServletContext());
+		
+		int result = userService.join(userDTO, profile, session.getServletContext());
 		
 		return "redirect:./login";
 	}
@@ -74,8 +84,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(UserDTO userDTO) throws Exception {
-		int result = userService.update(userDTO);
+	public String update(UserDTO userDTO, HttpSession session, MultipartFile profile, ServletRequest context) throws Exception {
+		UserDTO dto = (UserDTO)session.getAttribute("user");
+		
+		userDTO.setUsername(dto.getUsername());
+		int result = userService.update(userDTO, profile, null, session);
 		return "redirect:./detail";
 	}
 	

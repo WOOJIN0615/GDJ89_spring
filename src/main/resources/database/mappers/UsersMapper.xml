@@ -4,9 +4,27 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.woojin.app.users.UserDAO">
-  	<select id="detail" resultType="com.woojin.app.users.UserDTO" parameterType="com.woojin.app.users.UserDTO">
-  		SELECT * FROM USERS WHERE USERNAME=#{username,jdbcType=VARCHAR}
+  	<select id="detail" resultMap="getDetailResult" parameterType="com.woojin.app.users.UserDTO">
+  		SELECT * FROM USERS u
+  		LEFT OUTER JOIN
+  		PROFILE p
+  		USING (USERNAME)
+		WHERE USERNAME = #{username} 
   	</select>
+  	
+  	<resultMap type="UserDTO" id="getDetailResult">
+  		<id column="USERNAME" property="username"/>
+  		
+  		<result column="PASSWORD" property="password"/>
+  		<result column="NAME" property="name"/>
+  		<result column="PHONE" property="phone"/>
+  		<result column="EMAIL" property="email"/>
+  		<!-- 1:1 -->
+  		<association property="userFileDTO" javaType="UserFileDTO">
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="OLDNAME" property="oldName"/>
+  		</association>
+  	</resultMap>
   	<insert id="join" parameterType="com.woojin.app.users.UserDTO">
   		INSERT INTO USERS VALUES (#{username}, #{password}, #{name}, #{phone}, #{email})
   	</insert>
@@ -17,6 +35,10 @@
   	<delete id="delete" parameterType="com.woojin.app.users.UserDTO">
   		DELETE USERS WHERE USERNAME=#{username}
   	</delete>
+  	<!-- 파일 저장 -->
+  	<insert id="upload" parameterType="UserFileDTO">
+  		INSERT INTO PROFILE VALUES (#{userName}, #{fileName}, #{oldName})
+  	</insert>
   	
   
   </mapper>

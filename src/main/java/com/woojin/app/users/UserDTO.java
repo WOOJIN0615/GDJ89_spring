@@ -10,7 +10,14 @@ public class UserDTO {
 	private String name;
 	private String phone;
 	private String email;
+	private UserFileDTO userFileDTO;
 	
+	public UserFileDTO getUserFileDTO() {
+		return userFileDTO;
+	}
+	public void setUserFileDTO(UserFileDTO userFileDTO) {
+		this.userFileDTO = userFileDTO;
+	}
 	public String getUsername() {
 		return username;
 	}

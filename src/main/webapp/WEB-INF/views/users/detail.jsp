@@ -17,6 +17,10 @@
 		<!-- contents 내용 작성 -->
 		<h1>MyPage</h1>
 		<div class="row g-3">
+			<div>
+		    <label for="inputEmail4" class="form-label">Profile</label>
+		    <img alt="" src="/resources/images/profiles/${not empty user.userFileDTO.fileName ? user.userFileDTO.fileName:'modern.png'}">
+		  </div>
 		  <div class="col-md-6">
 		    <label for="inputEmail4" class="form-label">Username</label>
 		    <input type="text" class="form-control" id="inputEmail4" name="username" value="${user.username}" disabled readonly>

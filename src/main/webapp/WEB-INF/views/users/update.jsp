@@ -17,12 +17,9 @@
 		<!-- contents 내용 작성 -->
 		<h1>MyPage</h1>
 		<div class="row g-3">
-		<form action="./update" method="post">
-		 
-		    
-		    <input type="hidden" class="form-control" id="inputEmail4" name="username" value="${user.username}">
-		  
+		<form action="./update" method="post" enctype="multipart/form-data">
 		  <div class="col-md-6">
+		  	<input type="file" class="form-control" name="profile" id="formGroupExampleInput"><br>
 		    <label for="inputPassword4" class="form-label">Password</label>
 		    <input type="password" class="form-control" id="inputPassword4" name="password" value="${user.password}">
 		  </div>
@@ -37,6 +34,9 @@
 		  <div class="col-md-6">
 		    <label for="inputAddress2" class="form-label">Email</label>
 		    <input type="text" class="form-control" id="inputAddress2" name="email" value="${user.email}">
+		  </div>
+		  <div class="col-md-6">
+		  	${user.userFileDTO.oldName} <span class="btn text-danger">X</span>
 		  </div>
 		  <div class="mb-3" style="justify-content: between">
 			<button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
