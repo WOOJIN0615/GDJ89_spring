@@ -15,8 +15,8 @@
 <div class="container-fluid my-5">
 	<div class="row col-md-8 offset-md-2">
 		<!-- contents 내용 작성 -->
-		<h1>${kind} Update</h1>
-		<form action="" method="post">
+		<h1>Notice Add</h1>
+		<form action="" method="post" enctype="multipart/form-data">
 		<div class="mb-3">
 		  <input type="hidden" name="boardNum" value="${dto.boardNum}">
 		  <label for="exampleFormControlInput1" class="form-label">제목</label>
@@ -25,6 +25,12 @@
 		<div class="mb-3">
 		  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		  <textarea class="form-control" name="boardContents" id="exampleFormControlTextarea1" rows="15" value="${dto.boardContents}"></textarea>
+		</div>
+		<div class="mb-3">
+			  <label for="profile" class="form-label">첨부파일</label>
+				  <input type="file" class="form-control" name="attaches" id="formGroupExampleInput">
+				  <input type="file" class="form-control" name="attaches" id="formGroupExampleInput">
+				  <input type="file" class="form-control" name="attaches" id="formGroupExampleInput">
 		</div>
 		<div class="mb-3" style="justify-content: between">
 		<button type="submit" class="btn btn-primary">

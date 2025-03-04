@@ -1,13 +1,21 @@
 package com.woojin.app.boards.qna;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 import com.woojin.app.boards.BoardDTO;
+import com.woojin.app.boards.BoardFileDTO;
 
 @Component
 public class QnaDTO extends BoardDTO{
+	public List<BoardFileDTO> getBoardFileDTOs() {
+		return boardFileDTOs;
+	}
+	public void setBoardFileDTOs(List<BoardFileDTO> boardFileDTOs) {
+		this.boardFileDTOs = boardFileDTOs;
+	}
 	private Long boardRef; //그룹으로 작성
 	//원본글-자기 자신의 글번호를 ref값으로 지정
 	//답글-부모글의 ref값을 ref값으로 지정
@@ -18,6 +26,8 @@ public class QnaDTO extends BoardDTO{
 	private Long boardDepth; //들여쓰기 횟수 
 	//원본글-0
 	//답글-부모글의 depth+1
+	
+	private List<BoardFileDTO> boardFileDTOs;
 
 	public Long getBoardRef() {
 		return boardRef;

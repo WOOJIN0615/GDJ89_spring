@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.woojin.app.boards.BoardDTO;
 import com.woojin.app.pages.Pager;
@@ -26,7 +27,7 @@ public class NoticeController {
 	
 	@ModelAttribute("kind")
 	public String getKind() {
-		return "NOTICE";
+		return "notice";
 	}
 	
 	@RequestMapping(value="list", method = RequestMethod.GET)
@@ -68,11 +69,13 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="add", method = RequestMethod.POST)
-	public String add(BoardDTO boardDTO, HttpSession session)throws Exception{
+	public String add(BoardDTO boardDTO, HttpSession session, MultipartFile[] attaches)throws Exception{
+		//1. DB에 Notice 정보를 Insert
+		//2. HDD에 File을 저장, 그 정보들을 DB에 저장
 		
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		boardDTO.setUserName(userDTO.getUsername());
-		int result = noticeService.add(boardDTO);
+		int result = noticeService.add(boardDTO, session, attaches);
 		
 		return "redirect:./list";
 	}

@@ -20,12 +20,12 @@
 			        </li>
 			        <c:if test="${empty user}">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="users/login">Login</a>
+						<a class="nav-link active" aria-current="page" href="/users/login">Login</a>
 					</li>
 					</c:if>
 					<c:if test="${not empty user}">
-					<li><a class="nav-link active" aria-current="page" href="users/logout">Logout</a></li>
-					<li><a class="nav-link active" aria-current="page" href="users/detail?username=${user.username}">Mypage</a></li>				
+					<li><a class="nav-link active" aria-current="page" href="/users/logout">Logout</a></li>
+					<li><a class="nav-link active" aria-current="page" href="/users/detail?username=${user.username}">Mypage</a></li>				
 					</c:if>
 			        <li class="nav-item">
 			          <a class="nav-link" href="/products/list">Products</a>
@@ -34,7 +34,7 @@
 			          <a class="nav-link" href="/qna/list">QNA</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link" href="/notices/list">Notices</a>
+			          <a class="nav-link" href="./notices/list">Notices</a>
 			        </li>
 			        <li class="nav-item dropdown">
 			          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">

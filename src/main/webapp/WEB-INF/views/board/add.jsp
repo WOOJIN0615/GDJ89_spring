@@ -25,6 +25,12 @@
 				<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 				<textarea class="form-control" name="boardContents" id="exampleFormControlTextarea1 boardContents" rows="15"></textarea>
 			  </div>
+			  <div class="mb-3">
+			  <label for="profile" class="form-label">첨부파일</label>
+				  <input type="file" class="form-control" name="attaches" id="formGroupExampleInput">
+				  <input type="file" class="form-control" name="attaches" id="formGroupExampleInput">
+				  <input type="file" class="form-control" name="attaches" id="formGroupExampleInput">
+			  </div>
 			  <div class="mb-3" style="justify-content: between">
 		<button type="submit" id="add_button" class="btn btn-primary">
 		  등록

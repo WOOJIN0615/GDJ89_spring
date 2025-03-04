@@ -21,6 +21,12 @@
 		  <label for="exampleFormControlTextarea1" class="form-label"></label>
 		  <textarea style="height: 350px" class="form-control" name="boardContents" id="exampleFormControlTextarea1" rows="3" placeholder="${dto.boardContents}" disabled readonly></textarea>
 		</div>
+		<div>
+			<c:forEach items="${dto.boardFileDTOs}" var="f">
+				<a href="/resources/images/${kind}/${f.fileName}">${f.oldName}</a>
+				
+			</c:forEach>
+		</div>
 		<div class="mb-3" style="justify-content: between">
 			<form id="frm" action="">
 				<input type="hidden" name="boardNum" value="${dto.boardNum}">

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.woojin.app.boards.BoardDAO;
 import com.woojin.app.boards.BoardDTO;
+import com.woojin.app.boards.BoardFileDTO;
 import com.woojin.app.pages.Pager;
 
 @Repository
@@ -66,6 +67,10 @@ public class QnaDAO implements BoardDAO {
 	
 	public int updateStep(QnaDTO qnaDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"updateStep", qnaDTO);
+	}
+	
+	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"addFile", boardFileDTO);
 	}
 	
 	public int reply(QnaDTO qnaDTO) throws Exception {

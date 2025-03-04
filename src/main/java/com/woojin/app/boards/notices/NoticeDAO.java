@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.woojin.app.boards.BoardDAO;
 import com.woojin.app.boards.BoardDTO;
+import com.woojin.app.boards.BoardFileDTO;
 import com.woojin.app.pages.Pager;
 
 @Repository
@@ -44,6 +45,10 @@ public class NoticeDAO implements BoardDAO {
 	public int add(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"add", boardDTO);
+	}
+	
+	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"addFile", boardFileDTO);
 	}
 	
 	@Override

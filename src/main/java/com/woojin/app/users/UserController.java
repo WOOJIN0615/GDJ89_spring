@@ -84,11 +84,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(UserDTO userDTO, HttpSession session, MultipartFile profile, ServletRequest context) throws Exception {
+	public String update(UserDTO userDTO, HttpSession session, MultipartFile profile) throws Exception {
 		UserDTO dto = (UserDTO)session.getAttribute("user");
 		
 		userDTO.setUsername(dto.getUsername());
-		int result = userService.update(userDTO, profile, null, session);
+		int result = userService.update(userDTO, profile, session);
 		return "redirect:./detail";
 	}
 	

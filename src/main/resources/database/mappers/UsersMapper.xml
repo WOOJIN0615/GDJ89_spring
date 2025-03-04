@@ -14,7 +14,6 @@
   	
   	<resultMap type="UserDTO" id="getDetailResult">
   		<id column="USERNAME" property="username"/>
-  		
   		<result column="PASSWORD" property="password"/>
   		<result column="NAME" property="name"/>
   		<result column="PHONE" property="phone"/>
@@ -31,6 +30,10 @@
 	<update id="update" parameterType="com.woojin.app.users.UserDTO">
   		UPDATE USERS SET USERNAME=#{username}, PASSWORD=#{password}, NAME=#{name}, PHONE=#{phone}, EMAIL=#{email}
   		WHERE USERNAME=#{username}
+  	</update>
+  	<update id="updateFile" parameterType="UserFileDTO">
+  		UPDATE PROFILE SET FILENAME=#{fileName}, OLDNAME=#{oldName} 
+  		WHERE USERNAME=#{userName}
   	</update>
   	<delete id="delete" parameterType="com.woojin.app.users.UserDTO">
   		DELETE USERS WHERE USERNAME=#{username}

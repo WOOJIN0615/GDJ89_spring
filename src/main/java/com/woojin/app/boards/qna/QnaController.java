@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.woojin.app.boards.BoardDTO;
@@ -26,7 +27,7 @@ public class QnaController {
 	
 	@ModelAttribute("kind")
 	public String getKind() {
-		return "QNA";
+		return "qna";
 	}
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -62,10 +63,10 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(BoardDTO boardDTO, HttpSession session) throws Exception {
+	public String add(BoardDTO boardDTO, HttpSession session, MultipartFile[] attaches) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		boardDTO.setUserName(userDTO.getUsername());
-		int result = qnaService.add(boardDTO);
+		int result = qnaService.add(boardDTO, session, attaches);
 		
 		return "redirect:./list";
 	}

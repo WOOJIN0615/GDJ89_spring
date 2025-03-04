@@ -54,15 +54,16 @@ public class UserService {
 		return userDTO;
 	}
 	
-	public int update(UserDTO userDTO, MultipartFile profile, ServletContext context, HttpSession session) throws Exception {
+	public int update(UserDTO userDTO, MultipartFile profile, HttpSession session) throws Exception {
 		int result = userDAO.update(userDTO);
 		if (!profile.isEmpty()) {
-			UserFileDTO userFileDTO = save(context, profile, userDTO);
+			UserFileDTO userFileDTO = save(session.getServletContext(), profile, userDTO);
+			int r = userDAO.updateFile(userFileDTO);
+			if (r<1) {
+				result = userDAO.upload(userFileDTO);
+			}
 		}
 		
-		if (result==0) {
-			result = userDAO.update(userDTO);
-		}
 		
 		userDTO = userDAO.detail(userDTO);
 		session.setAttribute("user", userDTO);

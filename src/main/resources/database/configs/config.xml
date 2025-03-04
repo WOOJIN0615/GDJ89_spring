@@ -10,10 +10,12 @@
 		<typeAlias type="com.woojin.app.products.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.woojin.app.boards.notices.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.woojin.app.boards.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="com.woojin.app.boards.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="com.woojin.app.boards.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.woojin.app.users.UserFileDTO" alias="UserFileDTO"/>
 		<typeAlias type="com.woojin.app.files.FileDTO" alias="FileDTO"/>
 		<typeAlias type="com.woojin.app.pages.Pager" alias="Pager"/>
 		<typeAlias type="java.util.Map" alias="Map"/>
+		<typeAlias type="java.util.List" alias="List"/>
 	</typeAliases>
 </configuration>
