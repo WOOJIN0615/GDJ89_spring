@@ -28,12 +28,17 @@ del.addEventListener("click", function(){
     frm.submit();
 })
 
-rep.addEventListener("click", function(){
-    console.log(frm.getAttribute("method"));
-    frm.action="./reply";
-    frm.submit();
-})
+// rep.addEventListener("click", function(){
+//     console.log(frm.getAttribute("method"));
+//     frm.action="./reply";
+//     frm.submit();
+// })
 
-addCart.addEventListener("click", function(){
+addCart.addEventListener("click", ()=>{
     console.log(productNum.value);
+    fetch('../users/addCart?productNum='+productNum.value)
+    .then(res=>res.text())
+    .then(res=>{
+        
+    })
 })

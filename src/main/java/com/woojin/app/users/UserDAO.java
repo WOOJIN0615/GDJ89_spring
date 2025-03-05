@@ -16,6 +16,9 @@ public class UserDAO {
 	@Autowired
 	private UserDTO userDTO;
 	
+	@Autowired
+	private CartDTO cartDTO;
+	
 	public int join(UserDTO userDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"join", userDTO);
 	}
@@ -33,5 +36,9 @@ public class UserDAO {
 	
 	public int upload(UserFileDTO userFileDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"upload", userFileDTO);
+	}
+	
+	public int addCart(CartDTO cartDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"addCart", cartDTO);
 	}
 }

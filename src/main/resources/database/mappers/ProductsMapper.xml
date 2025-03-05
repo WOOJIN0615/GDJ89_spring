@@ -40,7 +40,7 @@
 		WHERE R BETWEEN #{startNum} AND #{endNum}
   	</select>
   	<select id="count" resultType="Long">
-  		SELECT COUNT(productnum) FROM products
+  		SELECT COUNT(productNum) FROM products
   	</select>
   	<insert id="add" parameterType="com.woojin.app.products.ProductDTO">
   		INSERT INTO PRODUCTS (PRODUCTNUM, PRODUCTNAME, PRODUCTRATE, PRODUCTDETAIL, PRODUCTDATE) 

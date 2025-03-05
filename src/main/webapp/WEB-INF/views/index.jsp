@@ -38,11 +38,34 @@
 			</div>
 		
 		</div>
+		<button id="btn">CLICK</button>
 
 	
 	</div>
 <c:import url="./template/layout_footer.jsp"></c:import>
-	
 <c:import url="./template/boot_jsp.jsp"></c:import>
+<script>
+	const btn = document.getElementById("btn");
+	
+	btn.addEventListener('click', function(){
+		console.log("start");
+		let num=1;
+		fetch("notices/list").then(result=>{
+			return result.text(); //응답 데이터가 text 형태일때 꺼내는 메서드
+			//result.json(); //응답 데이터가 json 형태일때 꺼내는 메서드
+		})
+		.then(result => {
+			console.log(result);
+			num++;
+		})
+		.catch((e)=>{
+
+		})
+		.finally(()=>{
+
+		});
+		console.log(num);
+	})
+</script>
 </body>
 </html>

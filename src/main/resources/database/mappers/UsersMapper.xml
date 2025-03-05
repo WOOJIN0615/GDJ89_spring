@@ -27,6 +27,9 @@
   	<insert id="join" parameterType="com.woojin.app.users.UserDTO">
   		INSERT INTO USERS VALUES (#{username}, #{password}, #{name}, #{phone}, #{email})
   	</insert>
+  	<insert id="addCart" parameterType="CartDTO">
+  		INSERT INTO CARTS VALUES (#{username}, #{productNum})
+  	</insert>
 	<update id="update" parameterType="com.woojin.app.users.UserDTO">
   		UPDATE USERS SET USERNAME=#{username}, PASSWORD=#{password}, NAME=#{name}, PHONE=#{phone}, EMAIL=#{email}
   		WHERE USERNAME=#{username}

@@ -7,6 +7,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.woojin.app.users.UserDTO" alias="UserDTO"/>
+		<typeAlias type="com.woojin.app.users.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.woojin.app.products.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.woojin.app.boards.notices.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.woojin.app.boards.BoardDTO" alias="BoardDTO"/>

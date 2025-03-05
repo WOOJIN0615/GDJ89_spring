@@ -19,7 +19,8 @@
 		<form action="./join" method="post" enctype="multipart/form-data">
 		<div class="mb-3">
 		  <label for="formGroupExampleInput" class="form-label">Username</label>
-		  <input type="text" class="form-control" name="username" id="formGroupExampleInput" placeholder="사용할 아이디를 입력하세요."><br>
+		  <input type="text" class="form-control" name="username" id="username" placeholder="사용할 아이디를 입력하세요.">
+		  <div style="color: red;" id="usernameResult"></div><br>
 		  <label for="formGroupExampleInput2" class="form-label">Password</label>
 		  <input type="password" class="form-control" name="password" id="formGroupExampleInput2"><br>
 		  <label for="formGroupExampleInput" class="form-label">Name</label>
@@ -39,5 +40,6 @@
 
 <c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/template/boot_jsp.jsp"></c:import>
+<script src="/resources/js/users/join.js"></script>
 </body>
 </html>

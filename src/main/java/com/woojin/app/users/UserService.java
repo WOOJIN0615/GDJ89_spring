@@ -5,10 +5,12 @@ import java.util.Calendar;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,11 +38,20 @@ public class UserService {
 		return result;
 	}
 	
+	public int addCart(CartDTO cartDTO) throws Exception{
+		int result = userDAO.addCart(cartDTO);
+		return result;
+	}
+	
+	public UserDTO check(UserDTO userDTO) throws Exception {
+		return userDAO.detail(userDTO);
+	}
+	
 	public UserDTO login(UserDTO userDTO) throws Exception {
 		UserDTO result = userDAO.detail(userDTO);
 		
 		if (result!=null) {
-			if (result.getPassword().equals(userDTO.getPassword())) {
+			if (result.getPassword().equals(userDTO.getPassword())){
 				return result;
 			}
 		}
