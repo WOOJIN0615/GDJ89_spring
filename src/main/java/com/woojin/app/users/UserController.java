@@ -48,8 +48,6 @@ public class UserController {
 	
 	@RequestMapping(value = "addCart", method = RequestMethod.POST)
 	public String addCart(CartDTO cartDTO, HttpSession session, Model model) throws Exception{
-			CartDTO dto =(CartDTO)session.getAttribute("user");
-			cartDTO.setUsername(dto.getUsername());
 			int result = userService.addCart(cartDTO);
 			System.out.println(cartDTO.getUsername());
 		
