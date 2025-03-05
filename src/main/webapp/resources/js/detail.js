@@ -2,7 +2,6 @@
 //form method의 값을 콘솔에 출력
 //삭제 버튼을 클릭했을때 console에 출력
 //form action의 주소값을 콘솔에 출력
-
 const up = document.getElementById("up");
 const del = document.getElementById("del");
 const frm = document.getElementById("frm");

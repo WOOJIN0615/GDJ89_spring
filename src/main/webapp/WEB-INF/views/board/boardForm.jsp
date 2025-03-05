@@ -26,12 +26,11 @@
 		  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		  <textarea class="form-control" name="boardContents" id="exampleFormControlTextarea1" rows="15" value="${dto.boardContents}"></textarea>
 		</div>
-		<div class="mb-3">
-			  <label for="profile" class="form-label">첨부파일</label>
-				  <input type="file" class="form-control" name="attaches" id="formGroupExampleInput">
-				  <input type="file" class="form-control" name="attaches" id="formGroupExampleInput">
-				  <input type="file" class="form-control" name="attaches" id="formGroupExampleInput">
-		</div>
+		<div id="files" class="mb-3">
+
+
+			<button class="btn btn-success" type="button" id="add_file">파일추가</button>
+		   </div>
 		<div class="mb-3" style="justify-content: between">
 		<button type="submit" class="btn btn-primary">
 		  수정
@@ -45,5 +44,6 @@
 
 <c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/template/boot_jsp.jsp"></c:import>
+<script src="/resources/js/files/filemanager.js"></script>
 </body>
 </html>
