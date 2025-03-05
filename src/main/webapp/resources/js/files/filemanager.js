@@ -1,18 +1,23 @@
 const add_file = document.getElementById("add_file");
 const files = document.getElementById("files");
 const del = document.getElementsByClassName("del");
+let count=files.getAttribute("data-files-size");
+
+if (count<1){
+    count=1;
+}
 
 files.addEventListener('click', function(e){
     if(e.target.classList.contains('del')){
-        console.log('delete');
+        e.target.parentElement.remove();
+        count--;
     }
 })
 
 
-let count=0;
 
 add_file.addEventListener("click", function(){
-    if(count>4){
+    if(count>5){
         alert('파일은 최대 5개만 가능');
         return;
     }

@@ -26,10 +26,11 @@
 		  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		  <textarea class="form-control" name="boardContents" id="exampleFormControlTextarea1" rows="15" value="${dto.boardContents}"></textarea>
 		</div>
-		<div id="files" class="mb-3">
 
-
-			<button class="btn btn-success" type="button" id="add_file">파일추가</button>
+		<div id="files" class="mb-3" data-files-size="${dto.boardFileDTOs.size()}">
+			<div class="mb-3">
+				<button class="btn btn-success" type="button" id="add_file">파일추가</button>
+			</div>
 		   </div>
 		<div class="mb-3" style="justify-content: between">
 		<button type="submit" class="btn btn-primary">
