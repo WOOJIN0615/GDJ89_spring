@@ -1,10 +1,13 @@
 package com.woojin.app.users;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.woojin.app.products.ProductDTO;
 
 @Repository
 public class UserDAO {
@@ -15,9 +18,7 @@ public class UserDAO {
 	
 	@Autowired
 	private UserDTO userDTO;
-	
-	@Autowired
-	private CartDTO cartDTO;
+
 	
 	public int join(UserDTO userDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"join", userDTO);
@@ -38,7 +39,15 @@ public class UserDAO {
 		return sqlSession.insert(NAMESPACE+"upload", userFileDTO);
 	}
 	
-	public int addCart(CartDTO cartDTO) throws Exception{
-		return sqlSession.insert(NAMESPACE+"addCart", cartDTO);
+	public int addCart(Map<String, Object> map) throws Exception{
+		return sqlSession.insert(NAMESPACE+"addCart", map);
+	}
+	
+	public List<ProductDTO> getCartList(Map<String, Object> map)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getCartList", map);
+	}
+	
+	public Long getCartTotalCount(Object userDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getCartTotalCount", userDTO);
 	}
 }

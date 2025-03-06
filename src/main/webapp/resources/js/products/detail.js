@@ -39,6 +39,15 @@ addCart.addEventListener("click", ()=>{
     fetch('../users/addCart?productNum='+productNum.value)
     .then(res=>res.text())
     .then(res=>{
-        
+        if (res.trim()=="1"){
+            let r=confirm("장바구니로 이동하시겠습니까?");
+            if (r){
+                alert('장바구니로 이동')
+            }
+        }else {
+            alert('상품이 장바구니에 담기지 않았습니다');
+        }
+    }).catch(r=>{
+        alert('상품이 장바구니에 담기지 않았습니다');
     })
 })

@@ -1,5 +1,10 @@
 package com.woojin.app.users;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.woojin.app.pages.Pager;
+import com.woojin.app.products.ProductDTO;
 
 @Controller
 @RequestMapping(value = "/users/*")
@@ -42,16 +50,23 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "addCart")
-	public String addCart() throws Exception{
-		return "users/addCart";
+	public String addCart(ProductDTO productDTO, HttpSession session, Model model) throws Exception{
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("product", productDTO);
+		map.put("user", session.getAttribute("user"));
+		int result = userService.addCart(map);
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
 	}
 	
-	@RequestMapping(value = "addCart", method = RequestMethod.POST)
-	public String addCart(CartDTO cartDTO, HttpSession session, Model model) throws Exception{
-			int result = userService.addCart(cartDTO);
-			System.out.println(cartDTO.getUsername());
+	@RequestMapping(value = "carts")
+	public void getCartList(Pager pager, HttpSession session, Model model) throws Exception {
+		List<ProductDTO> list = userService.getCartList(pager, (UserDTO)session.getAttribute("user"));
 		
-		return "";
+		model.addAttribute("carts", list);
+		model.addAttribute("pager", pager);
 	}
 	
 	@RequestMapping(value = "join", method = RequestMethod.GET)

@@ -25,7 +25,8 @@
 					</c:if>
 					<c:if test="${not empty user}">
 					<li><a class="nav-link active" aria-current="page" href="/users/logout">Logout</a></li>
-					<li><a class="nav-link active" aria-current="page" href="/users/detail?username=${user.username}">Mypage</a></li>				
+					<li><a class="nav-link active" aria-current="page" href="/users/detail?username=${user.username}">Mypage</a></li>
+					<li><a class="nav-link" href="/users/carts"><i class="bi bi-basket"></i></a></li>				
 					</c:if>
 			        <li class="nav-item">
 			          <a class="nav-link" href="/products/list">Products</a>

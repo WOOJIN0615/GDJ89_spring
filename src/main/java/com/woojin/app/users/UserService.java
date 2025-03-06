@@ -2,6 +2,9 @@ package com.woojin.app.users;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -15,6 +18,8 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.woojin.app.files.FileUpload;
+import com.woojin.app.pages.Pager;
+import com.woojin.app.products.ProductDTO;
 
 @Service
 public class UserService {
@@ -38,8 +43,8 @@ public class UserService {
 		return result;
 	}
 	
-	public int addCart(CartDTO cartDTO) throws Exception{
-		int result = userDAO.addCart(cartDTO);
+	public int addCart(Map<String, Object> map) throws Exception{
+		int result = userDAO.addCart(map);
 		return result;
 	}
 	
@@ -93,6 +98,16 @@ public class UserService {
 		userFileDTO.setOldName(profile.getOriginalFilename());
 		
 		return userFileDTO;
+	}
+	public List<ProductDTO> getCartList(Pager pager, Object userDTO)throws Exception{
+		pager.make(userDAO.getCartTotalCount(userDTO));
+		
+		pager.makeNum();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		map.put("user", userDTO);
+		
+		return userDAO.getCartList(map);
 	}
 
 }
