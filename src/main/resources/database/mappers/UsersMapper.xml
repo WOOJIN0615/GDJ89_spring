@@ -66,6 +66,16 @@
   	<insert id="upload" parameterType="UserFileDTO">
   		INSERT INTO PROFILE VALUES (#{userName}, #{fileName}, #{oldName})
   	</insert>
+  	<delete id="cartDelete" parameterType="Map">
+  		DELETE CARTS
+  		WHERE 
+  			  USERNAME=#{user.username}
+  			  AND
+  			  PRODUCTNUM IN
+  			  <foreach item="item" collection="products"  open="(" separator="," close=")">
+  			  	#{item}
+  			  </foreach>
+  	</delete>
   	
   
   </mapper>

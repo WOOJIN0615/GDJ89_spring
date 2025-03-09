@@ -141,4 +141,18 @@ public class UserController {
 		return "redirect:./detail";
 	}
 	
+	@RequestMapping(value = "cartDelete", method = RequestMethod.GET)
+	public String cartDelete(Long [] productNum, HttpSession session, Model model)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user", session.getAttribute("user"));
+		map.put("products", productNum);
+		
+		int result = userService.cartDelete(map);
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
+		
+	}
+	
 }
