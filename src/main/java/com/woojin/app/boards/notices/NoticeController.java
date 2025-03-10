@@ -121,5 +121,13 @@ public class NoticeController {
 		
 		return "commons/ajaxResult";
 	}
+	
+	@RequestMapping(value = "fileDown", method = RequestMethod.GET)
+	public String fileDown(BoardFileDTO boardFileDTO) throws Exception {
+		boardFileDTO = noticeService.getFileDetail(boardFileDTO);
+		
+		return "fileDownView";
+		
+	}
 
 }

@@ -23,7 +23,7 @@
 		</div>
 		<div>
 			<c:forEach items="${dto.boardFileDTOs}" var="f">
-				<a href="/resources/images/${kind}/${f.fileName}">${f.oldName}</a>
+				<a href="./fileDown?fileNum=${a.fileNum}">${f.oldName}</a>
 				
 			</c:forEach>
 		</div>
