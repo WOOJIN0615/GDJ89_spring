@@ -39,5 +39,13 @@ public class FileUpload {
 		
 		return str;
 	}
+	
+	public boolean fileDelete(String path, String fileName) throws Exception {
+		File file = new File(path, fileName);
+		
+		boolean check=file.delete();
+		
+		return check;
+	}
 
 }

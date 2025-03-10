@@ -68,5 +68,13 @@ public class NoticeDAO implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.delete(NAMESPACE+"delete", boardDTO);
 	}
+	
+	public int fileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"fileDelete", boardFileDTO);
+	}
+	
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getFileDetail", boardFileDTO);
+	}
 
 }

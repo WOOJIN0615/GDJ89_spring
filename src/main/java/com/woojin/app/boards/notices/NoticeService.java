@@ -45,7 +45,6 @@ public class NoticeService implements BoardService {
 		return noticeDAO.getDetail(boardDTO);
 	}
 
-	@Override
 	public int add(BoardDTO boardDTO, HttpSession session, MultipartFile[] attaches) throws Exception {
 		//1. DB에 Notice 정보를 Insert
 		int result = noticeDAO.add(boardDTO);
@@ -63,10 +62,22 @@ public class NoticeService implements BoardService {
 		return result;
 	}
 
-	@Override
-	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return noticeDAO.update(boardDTO);
+	
+	public int update(BoardDTO boardDTO, MultipartFile[] attaches, HttpSession session) throws Exception {
+		int result = noticeDAO.update(boardDTO);
+		
+		for (MultipartFile attach: attaches) {
+			if (attach.isEmpty()) {
+				continue;
+			}
+			BoardFileDTO boardFileDTO = this.fileSave(session.getServletContext(), attach);
+			//DB에 저장
+			//
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = noticeDAO.addFile(boardFileDTO);
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -75,9 +86,23 @@ public class NoticeService implements BoardService {
 		return noticeDAO.delete(boardDTO);
 	}
 	
+	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session) throws Exception{
+		//1. 정보 조회
+		boardFileDTO=noticeDAO.getFileDetail(boardFileDTO);
+		//2. DB 삭제 > HDD 삭제
+		int result=noticeDAO.fileDelete(boardFileDTO);
+		if (result>0) {
+			String path=session.getServletContext().getRealPath("/resources/images/notice");
+			filemanager.fileDelete(path, boardFileDTO.getFileName());
+		}
+		
+		return result;
+	}
+	
 	private BoardFileDTO fileSave(ServletContext context, MultipartFile attach) throws Exception {
 		//1. 어디에 저장할 것인가
 		String path = context.getRealPath("/resources/images/notice/");
+		System.out.println(path);
 		File file = new File(path);
 		
 		if (file.exists()) {
@@ -95,6 +120,12 @@ public class NoticeService implements BoardService {
 		return boardFileDTO;
 		
 		
+	}
+
+	@Override
+	public int update(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

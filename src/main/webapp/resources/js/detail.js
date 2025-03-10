@@ -33,7 +33,3 @@ rep.addEventListener("click", function(){
     frm.action="./reply";
     frm.submit();
 })
-
-addCart.addEventListener("click", function(){
-    console.log(productNum.value);
-})

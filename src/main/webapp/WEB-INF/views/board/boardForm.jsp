@@ -28,11 +28,10 @@
 		</div>
 		
 		<div class="mb-3">
-			<c:forEach items="${dto.boardFileDTOS}" var="a">
+			<c:forEach items="${dto.boardFileDTOs}" var="a">
 				<div class="alert alert-success" role="alert">
-					${f.oldName} <button type="button" data-file-num="${a.fileNum}" data-kind="${kind}"></button> <span class="badge text-bg-secondary file_delete"></span>
-					
-				</div>		
+				   ${a.oldName} <button type="button" data-file-num="${a.fileNum}" data-kind="${kind}" class="btn btn-outline-light badge text-bg-secondary file_delete">X</button>
+			 </div>
 			</c:forEach>
 		</div>
 
@@ -54,7 +53,6 @@
 
 <c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/template/boot_jsp.jsp"></c:import>
-<script src="/resources/js/files/filemanager.js"></script>
-<script src="/resources//js/files/fileDelete.js"></script>
+<script type="module" src="/resources/js/files/filemanager.js"></script>
 </body>
 </html>

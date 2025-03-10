@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.woojin.app.boards.BoardDTO;
@@ -91,8 +92,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public String update(BoardDTO boardDTO)throws Exception{
-		int result =  noticeService.update(boardDTO);
+	public String update(BoardDTO boardDTO, MultipartFile[] attaches, HttpSession session)throws Exception{
+		int result =  noticeService.update(boardDTO, attaches, session);
 		
 		//return "redirect:./list";
 		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
@@ -114,10 +115,11 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "fileDelete", method = RequestMethod.POST)
-	public String fileDelete(BoardFileDTO boardFileDTO) throws Exception{
-		System.out.println(boardFileDTO.getFileNum());
+	public String fileDelete(BoardFileDTO boardFileDTO, HttpSession session, Model model) throws Exception{
+		int result=noticeService.fileDelete(boardFileDTO, session);
+		model.addAttribute("result", result);
 		
-		return "";
+		return "commons/ajaxResult";
 	}
 
 }
