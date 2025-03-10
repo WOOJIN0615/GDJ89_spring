@@ -26,6 +26,15 @@
 		  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		  <textarea class="form-control" name="boardContents" id="exampleFormControlTextarea1" rows="15" value="${dto.boardContents}"></textarea>
 		</div>
+		
+		<div class="mb-3">
+			<c:forEach items="${dto.boardFileDTOS}" var="f">
+				<div class="alert alert-success" role="alert">
+					${f.oldName} <span class="badge text-bg-secondary file_delete"></span>
+					
+				</div>		
+			</c:forEach>
+		</div>
 
 		<div id="files" class="mb-3" data-files-size="${dto.boardFileDTOs.size()}">
 			<div class="mb-3">
@@ -46,5 +55,6 @@
 <c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/template/boot_jsp.jsp"></c:import>
 <script src="/resources/js/files/filemanager.js"></script>
+<script src="/resources//js/files/fileDelete.js"></script>
 </body>
 </html>
