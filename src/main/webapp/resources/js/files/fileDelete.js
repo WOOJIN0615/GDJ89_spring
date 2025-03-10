@@ -6,6 +6,17 @@ for (let a of file_delete){
         if (check){
             let num = a.getAttribute("data-file-num")
             let kind = a.getAttribute("data-kind");
+
+            //동기식, 비동기식
+            //'post'
+            let url=`/${kind}/fileDelete`;
+            fetch(url, {
+                method:'POST',
+                headers : {
+                    "Content-type": "application/x-www-form-urlencoded;charset=utf-8"
+                },
+                body : 'fileNum='+num
+            })    
         }
     })
 }
