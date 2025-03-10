@@ -28,9 +28,9 @@
 		</div>
 		
 		<div class="mb-3">
-			<c:forEach items="${dto.boardFileDTOS}" var="f">
+			<c:forEach items="${dto.boardFileDTOS}" var="a">
 				<div class="alert alert-success" role="alert">
-					${f.oldName} <span class="badge text-bg-secondary file_delete"></span>
+					${f.oldName} <button type="button" data-file-num="${a.fileNum}" data-kind="${kind}"></button> <span class="badge text-bg-secondary file_delete"></span>
 					
 				</div>		
 			</c:forEach>
