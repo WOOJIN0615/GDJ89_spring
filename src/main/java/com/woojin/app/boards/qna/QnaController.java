@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.woojin.app.boards.BoardDTO;
+import com.woojin.app.boards.BoardFileDTO;
 import com.woojin.app.pages.Pager;
 import com.woojin.app.users.UserDTO;
 
@@ -90,8 +91,8 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public String delete(BoardDTO boardDTO, Model model) throws Exception {
-		int result = qnaService.delete(boardDTO);
+	public String delete(BoardDTO boardDTO, Model model, HttpSession session) throws Exception {
+		int result = qnaService.delete(boardDTO, session);
 		String str = "삭제 실패";
 		if (result > 0) {
 			str = "삭제 성공";
@@ -100,6 +101,13 @@ public class QnaController {
 		model.addAttribute("path", "./list");
 		
 		return "commons/result";
+	}
+	
+	public String fileDelete(BoardFileDTO boardFileDTO, Model model, HttpSession session) throws Exception {
+		int result = qnaService.fileDelete(boardFileDTO, session);
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
 	}
 	
 	@RequestMapping(value = "reply", method = RequestMethod.GET)

@@ -63,8 +63,19 @@ public class QnaService implements BoardService {
 		return qnaDAO.update(boardDTO);
 	}
 	
-	public int delete(BoardDTO boardDTO) throws Exception {
-		return qnaDAO.delete(boardDTO);
+	public int delete(BoardDTO boardDTO, HttpSession session) throws Exception {
+		qnaDAO.getDetail(boardDTO);
+		int result = qnaDAO.fileDeleteAll(boardDTO);
+		result = qnaDAO.delete(boardDTO);
+		
+		if (result>0) {
+			String path=session.getServletContext().getRealPath("/resources/images/qna");
+			for (BoardFileDTO boardFileDTO :((QnaDTO)boardDTO).getBoardFileDTOs()){
+			filemanager.fileDelete(path, boardFileDTO.getFileName());
+			}
+		}
+		
+		return result;
 	}
 	
 	public int reply(QnaDTO boardDTO) throws Exception {
@@ -99,6 +110,18 @@ public class QnaService implements BoardService {
 		boardFileDTO.setOldName(attach.getOriginalFilename());
 		
 		return boardFileDTO;
+	}
+	
+	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session) throws Exception {
+		boardFileDTO=qnaDAO.getFileDetail(boardFileDTO);
+		int result = qnaDAO.fileDelete(boardFileDTO);
+		
+		if (result>0) {
+			String path=session.getServletContext().getRealPath("/resources/images/qna");
+			filemanager.fileDelete(path, boardFileDTO.getFileName());
+		}
+		
+		return result;
 	}
 
 }
