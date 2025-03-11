@@ -14,6 +14,8 @@
 		<typeAlias type="com.woojin.app.boards.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.woojin.app.boards.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="com.woojin.app.boards.qna.QnaDTO" alias="QnaDTO"/>
+		<typeAlias type="com.woojin.app.boards.CommentDTO" alias="CommentDTO"/>
+		<typeAlias type="com.woojin.app.products.CommentsDTO" alias="CommentsDTO"/>
 		<typeAlias type="com.woojin.app.users.UserFileDTO" alias="UserFileDTO"/>
 		<typeAlias type="com.woojin.app.files.FileDTO" alias="FileDTO"/>
 		<typeAlias type="com.woojin.app.pages.Pager" alias="Pager"/>

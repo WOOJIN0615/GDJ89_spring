@@ -54,5 +54,25 @@
   		DELETE PRODUCTS WHERE PRODUCTNUM=#{productNum}
   	</delete>
   	
+  	
+  	<insert id="addComments" parameterType="CommentsDTO">
+  		INSERT INTO COMMENTS (USERNAME, BOARDNUM, PRODUCTNUM, BOARDDATE, BOARDCONTENTS)
+  		VALUES (#{username}, comments_seq.nextval, #{productNum}, sysdate, #{boardContents})
+  	</insert>
+  	
+  	<select id="getCommentList" parameterType="CommentsDTO" resultType="Map">
+	  	SELECT * FROM
+	  		(SELECT ROWNUM R, M.* FROM (
+	  				(SELECT * FROM COMMENTS WHERE BOARDNUM=${comments.productNum} ORDER BY BOARDNUM DESC) M
+	  			)
+	  		)
+	  	WHERE R BETWEEN #{pager.startNum} AND #{pager.endNum}
+  	</select>
+  	
+  	<select id="countComment" parameterType="CommentsDTO" resultType="Long">
+  		SELECT COUNT(PRODUCTNUM) FROM COMMENTS
+  	</select>
+  	
+  	
   </mapper>
   

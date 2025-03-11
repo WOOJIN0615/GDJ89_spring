@@ -5,11 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.woojin.app.boards.CommentDTO;
 import com.woojin.app.pages.Pager;
 
 @Repository
@@ -47,6 +49,18 @@ public class ProductDAO {
 	
 	public int delete(ProductDTO productDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"delete", productDTO);
+	}
+	
+	public int addComments(CommentsDTO commentsDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"addComments", commentsDTO);
+	}
+	
+	public List<CommentsDTO> getCommentList(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getCommentList", map);
+	}
+	
+	public Long countComment(CommentsDTO commentsDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"countComment", commentsDTO);
 	}
 	
 	

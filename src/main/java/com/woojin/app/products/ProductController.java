@@ -3,6 +3,7 @@
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.woojin.app.pages.Pager;
+import com.woojin.app.users.UserDTO;
 
 @Controller
 @RequestMapping(value = "/products/*")
@@ -103,6 +105,26 @@ public class ProductController {
 		mv.addObject("dto", productService.delete(productDTO));
 		
 		return mv;
+	}
+	
+	@RequestMapping(value = "addComments", method = RequestMethod.POST)
+	public void addComments(CommentsDTO commentsDTO, Model model, HttpSession session) throws Exception{
+		
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		commentsDTO.setUserName(userDTO.getUsername());
+		
+		int result = productService.addComments(commentsDTO);
+	}
+	
+	@RequestMapping(value = "getCommentList", method = RequestMethod.GET)
+	public void getCommentList(Model model, Pager pager, CommentsDTO commentsDTO) throws Exception{
+		System.out.println("comments List");
+		
+		List<CommentsDTO> ar=productService.getCommentList(commentsDTO, pager);
+		
+		
+		model.addAttribute("pager", pager);
+		model.addAttribute("list", ar);
 	}
 	
 //	@RequestMapping(value = "delete", method = RequestMethod.POST)

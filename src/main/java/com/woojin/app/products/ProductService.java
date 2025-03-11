@@ -1,6 +1,8 @@
 package com.woojin.app.products;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -56,6 +58,24 @@ public class ProductService {
 	
 	public int delete(ProductDTO productDTO) throws Exception {
 		return productDAO.delete(productDTO);
+	}
+	
+	public int addComments(CommentsDTO commentsDTO) throws Exception{
+		return productDAO.addComments(commentsDTO);
+	}
+	
+	public List<CommentsDTO> getCommentList(CommentsDTO commentsDTO, Pager pager) throws Exception {
+		Long total = productDAO.count();
+		
+		pager.make(total);
+		pager.makeNum();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("comments", commentsDTO);
+		map.put("pager", pager);
+		
+		List<CommentsDTO> ar = productDAO.getCommentList(map);
+		return ar;
 	}
 
 }
