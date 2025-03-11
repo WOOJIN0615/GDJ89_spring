@@ -8,8 +8,10 @@ const frm = document.getElementById("frm");
 const rep = document.getElementById("rep");
 const addCart = document.getElementById("addCart");
 const productNum = document.getElementById("productNum");
-const addComment = document.getElementById("addComment");
-const comment = document.getElementById("comment");
+const addComments = document.getElementById("addComments");
+const commentContents = document.getElementById("commentContents");
+const commentsListResult = document.getElementById("commentsListResult");
+const pages = document.getElementById("pages");
 
 
 
@@ -54,38 +56,83 @@ addCart.addEventListener("click", ()=>{
     })
 })
 
-addComment.addEventListener("click", ()=>{
-    console.log(productNum.value);
-    console.log(comment.value);
-    let p = makeForm(pn, commentContents.value)
+addComments.addEventListener("click", async ()=>{
+    console.log(commentContents.value);
+    console.log(addCart.getAttribute("data-product-num"));
+    
+    await add();
+    await getList(1);
 
-    fetch('./detail', {
-        method:"POST",
-        // headers:{
-        //     'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        // },
-        body:p
-    })
-
+   
 
 })
 
 function makeForm(pn, contents){
     let f = new FormData();
     f.append("productNum", pn);
-    f.append("boardContents", contents);
+    f.append("boardContents", contents)
 
     return f;
 }
 
-function makeParam(){
-    let p = new URLSearchParams(pn, a);
+function makeParam(pn, contents){
+
+    let p = new URLSearchParams();
     p.append("productNum", pn);
-    p.append("boardContents", a);
+    p.append("boardContents", contents)
+
+    return p;
 }
 
-getList();
+getList(1)
 
-function getList() {
-    fetch('getCommentList?productNum='+productNum.value);
+async function getList(page){
+    let pn = addCart.getAttribute("data-product-num");
+    fetch(`listComments?productNum=${pn}&page=${page}`)
+    .then(r => r.text())
+    .then(r => {
+        commentsListResult.innerHTML=r;
+    })
+    .catch(e=> console.log(e))
+    
 }
+
+async function add(){
+    let pn = addCart.getAttribute("data-product-num");
+
+    //let p = makeParam(pn, commentsContents.value);
+    let p = makeForm(pn, commentContents.value)
+
+   
+
+    fetch('./addComments', {
+        method:'POST',
+        // headers: {
+        //     "Content-type":"application/x-www-form-urlencoded; charset=UTF-8"
+        // },
+        //body: `productNum=${pn}&boardContents=${commentsContents.value}`
+        body:p
+    })
+    .then(r=>r.text())
+    .then(r=>{
+        //getList()
+        if(r.trim()*1>0){
+
+        }else {
+
+        }
+
+        commentContents.value="";
+
+    })
+    .catch(e =>{
+        alert('에러 발생')
+    })
+}
+
+commentsListResult.addEventListener('click', (e)=>{
+    if(e.target.classList.contains('pages')){
+        let p = e.target.getAttribute("data-page-num");
+        getList(p)
+    }
+})

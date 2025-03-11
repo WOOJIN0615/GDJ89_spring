@@ -28,37 +28,22 @@
 				<input type="hidden" name="productNum" value="${dto.productNum}">
 				<button type="button" id="up" class="btn btn-primary">수정</button>
 				<button type="button" id="del" class="btn btn-danger">삭제</button>
-				<button type="button" id="addCart" class="btn btn-success">장바구니로 이동</button>
+				<button type="button" id="addCart" data-product-num="${dto.productNum}" class="btn btn-success">장바구니로 이동</button>
 			</form>
 		</div>
 
 		<div class="mb-3">
 			<div class="input-group">
 				<span class="input-group-text">댓글</span>
-				<textarea class="form-control" id="comment" value="" aria-label="With textarea"></textarea>
-				<button type="button" id="addComment" class="btn btn-success">댓글 등록</button>
+				<textarea class="form-control" id="commentContents" aria-label="With textarea"></textarea>
+				<button type="button" id="addComments" data-product-num="${dto.productNum}" class="btn btn-success">댓글 등록</button>
 			  </div>
 		</div>
-		<table class="table">
-			<thead>
-			  <tr>
-				<th>#</th>
-				<th>내용</th>
-				<th>작성일</th>
-				<th>아이디</th>
-			  </tr>
-			</thead>
-			<tbody>
-			<c:forEach items="${list}" var="v">
-			  <tr>
-				<td>${v.boardNum}</td>
-				<td>${v.boardContents}</td>
-				<td>${v.boardDate}%</td>
-				<td>${v.username}%</td>
-			  </tr>
-			</c:forEach>
-			</tbody>
-		  </table>
+
+		<div class="mb-3" id="commentsListResult">
+
+
+		</div>
 	</div>
 </div>
 <c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>

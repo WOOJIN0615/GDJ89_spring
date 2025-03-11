@@ -45,7 +45,7 @@ public class CommentsDAOTest2 {
 			commentsDTO.setBoardDate(new Date(ca.getTimeInMillis()));
 			commentsDTO.setBoardContents("BoardContents" + i);
 			commentsDTO.setProductNum(1l);
-			commentsDTO.setUserName("test");
+			commentsDTO.setUsername("test");
 			commentsDTO.setBoardNum(i*1l);
 			
 			productDAO.addComments(commentsDTO);

@@ -18,6 +18,8 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 	
+	private static Long count=0L;
+	
 
 	//list
 	public List<ProductDTO> getList(Pager pager) throws Exception {
@@ -65,17 +67,15 @@ public class ProductService {
 	}
 	
 	public List<CommentsDTO> getCommentList(CommentsDTO commentsDTO, Pager pager) throws Exception {
-		Long total = productDAO.count();
 		
-		pager.make(total);
+		pager.make(productDAO.countComment(commentsDTO));
 		pager.makeNum();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("comments", commentsDTO);
 		map.put("pager", pager);
 		
-		List<CommentsDTO> ar = productDAO.getCommentList(map);
-		return ar;
+		return productDAO.getCommentList(map);
 	}
 
 }

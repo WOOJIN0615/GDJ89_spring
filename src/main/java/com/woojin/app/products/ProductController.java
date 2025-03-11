@@ -108,23 +108,29 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "addComments", method = RequestMethod.POST)
-	public void addComments(CommentsDTO commentsDTO, Model model, HttpSession session) throws Exception{
+	public String addComments(CommentsDTO commentsDTO, Model model, HttpSession session) throws Exception{
+		System.out.println("comments add");
 		
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
-		commentsDTO.setUserName(userDTO.getUsername());
+		commentsDTO.setUsername(userDTO.getUsername());
 		
 		int result = productService.addComments(commentsDTO);
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
 	}
 	
-	@RequestMapping(value = "getCommentList", method = RequestMethod.GET)
-	public void getCommentList(Model model, Pager pager, CommentsDTO commentsDTO) throws Exception{
+	@RequestMapping(value = "listComments", method = RequestMethod.GET)
+	public String listComments(Model model, Pager pager, CommentsDTO commentsDTO) throws Exception{
 		System.out.println("comments List");
-		
+		System.out.println(commentsDTO.getUsername());
+		System.out.println(commentsDTO.getProductNum());
 		List<CommentsDTO> ar=productService.getCommentList(commentsDTO, pager);
 		
-		
-		model.addAttribute("pager", pager);
 		model.addAttribute("list", ar);
+		
+		return "commons/commentsList";
 	}
 	
 //	@RequestMapping(value = "delete", method = RequestMethod.POST)

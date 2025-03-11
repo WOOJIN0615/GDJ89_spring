@@ -43,7 +43,7 @@ public class QnaDAOTest extends Sample {
 		
 		for (int i=0; i<110; i++) {
 			qnaDTO.setBoardDate(new Date(ca.getTimeInMillis()));
-			qnaDTO.setUserName("test");
+			qnaDTO.setUsername("test");
 			qnaDTO.setBoardContents("testContents"+i);
 			qnaDTO.setBoardHit(i+1L);
 			qnaDTO.setBoardTitle("test"+i);

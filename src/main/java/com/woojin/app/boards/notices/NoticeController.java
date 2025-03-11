@@ -77,7 +77,7 @@ public class NoticeController {
 		//2. HDD에 File을 저장, 그 정보들을 DB에 저장
 		
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
-		boardDTO.setUserName(userDTO.getUsername());
+		boardDTO.setUsername(userDTO.getUsername());
 		int result = noticeService.add(boardDTO, session, attaches);
 		
 		return "redirect:./list";

@@ -48,7 +48,7 @@ public class NoticeDAOTest extends Sample {
 		noticeDTO.setBoardDate(new Date(ca.getTimeInMillis()));
 		noticeDTO.setBoardContents("boardcontents"+i);
 		noticeDTO.setBoardTitle("boardtitle"+i);
-		noticeDTO.setUserName("test");
+		noticeDTO.setUsername("test");
 		noticeDTO.setBoardHit(i+1L);
 		
 		noticeDAO.add(noticeDTO);
