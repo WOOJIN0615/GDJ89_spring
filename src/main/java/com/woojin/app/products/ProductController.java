@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.woojin.app.pages.Pager;
@@ -124,19 +125,42 @@ public class ProductController {
 	@RequestMapping(value = "listComments", method = RequestMethod.GET)
 	public String listComments(Model model, Pager pager, CommentsDTO commentsDTO) throws Exception{
 		System.out.println("comments List");
-		System.out.println(commentsDTO.getUsername());
-		System.out.println(commentsDTO.getProductNum());
-		List<CommentsDTO> ar=productService.getCommentList(commentsDTO, pager);
-		
+		List<CommentsDTO> ar=productService.getCommentsList(commentsDTO, pager);
 		model.addAttribute("list", ar);
 		
 		return "commons/commentsList";
 	}
 	
-//	@RequestMapping(value = "delete", method = RequestMethod.POST)
-//	public String delete(ProductDTO productDTO) throws Exception {
-//		int result = productService.delete(productDTO);
-//		return "redirect:./list";
-//	}
+	@RequestMapping(value = "deleteComments", method = RequestMethod.POST)
+	public String deleteComments(CommentsDTO commentsDTO, HttpSession session, Model model) throws Exception{
+		System.out.println("deleteComments");
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		commentsDTO.setUsername(userDTO.getUsername());
+		int result=productService.deleteComments(commentsDTO);
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
+	}
+	
+	@RequestMapping(value = "updateComments", method = RequestMethod.POST)
+	public String updateComments(CommentsDTO commentsDTO, Model model) throws Exception{
+		int result = productService.updateComments(commentsDTO);
+		System.out.println(commentsDTO.getBoardContents());
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
+	}
+	
+	@RequestMapping(value = "detailFiles", method = RequestMethod.POST)
+	public String detailFiles(MultipartFile uploadFile, HttpSession session, Model model) throws Exception{
+		String filename = productService.detailFiles(uploadFile, session);
+		filename = "/resources/images/products/"+filename;
+		
+		model.addAttribute("result", filename);
+		
+		return "commons/ajaxResult";
+	}
 	
 }

@@ -5,13 +5,13 @@
 const up = document.getElementById("up");
 const del = document.getElementById("del");
 const frm = document.getElementById("frm");
-const rep = document.getElementById("rep");
 const addCart = document.getElementById("addCart");
-const productNum = document.getElementById("productNum");
 const addComments = document.getElementById("addComments");
-const commentContents = document.getElementById("commentContents");
+const commentsContents = document.getElementById("commentsContents");
 const commentsListResult = document.getElementById("commentsListResult");
-const pages = document.getElementById("pages");
+const pages = document.getElementsByClassName("pages");
+const deleteComments = document.getElementsByClassName("deleteComments");
+const modal_change = document.getElementById("modal_change");
 
 
 
@@ -57,13 +57,11 @@ addCart.addEventListener("click", ()=>{
 })
 
 addComments.addEventListener("click", async ()=>{
-    console.log(commentContents.value);
+    console.log(commentsContents.value);
     console.log(addCart.getAttribute("data-product-num"));
     
     await add();
     await getList(1);
-
-   
 
 })
 
@@ -86,7 +84,7 @@ function makeParam(pn, contents){
 
 getList(1)
 
-async function getList(page){
+function getList(page){
     let pn = addCart.getAttribute("data-product-num");
     fetch(`listComments?productNum=${pn}&page=${page}`)
     .then(r => r.text())
@@ -97,11 +95,11 @@ async function getList(page){
     
 }
 
-async function add(){
+function add(){
     let pn = addCart.getAttribute("data-product-num");
 
     //let p = makeParam(pn, commentsContents.value);
-    let p = makeForm(pn, commentContents.value)
+    let p = makeForm(pn, commentsContents.value)
 
    
 
@@ -122,7 +120,7 @@ async function add(){
 
         }
 
-        commentContents.value="";
+        commentsContents.value="";
 
     })
     .catch(e =>{
@@ -130,9 +128,70 @@ async function add(){
     })
 }
 
-commentsListResult.addEventListener('click', (e)=>{
-    if(e.target.classList.contains('pages')){
-        let p = e.target.getAttribute("data-page-num");
+commentsListResult.addEventListener('click', async (e)=>{
+    if(e.target.classList.contains('deleteComments')){
+        let p = e.target.getAttribute("data-delete-num");
+
+        let f = new FormData();
+        f.append("boardNum", p);
+
+        await fetch("./deleteComments", {
+            method:"POST",
+            body:f
+        })
+        .then(r=>r.text())
+        .then(r=>{
+            if(r.trim()*1>0){
+                alert('삭제 성공')
+            }else{
+                alert('삭제 실패')
+            }
+        })
+        .catch(e=>{
+            console.log(e);
+        })
         getList(p)
     }
+})
+
+commentsListResult.addEventListener('click', async (e)=>{
+    if(e.target.classList.contains("updateComments")){
+        let ud = e.target;
+        let ud_s=ud.parentElement.previousElementSibling.previousElementSibling;
+
+        let c = ud_s.innerHTML;
+        document.getElementById('message-text').value=c;
+        
+        c = ud.getAttribute("data-update-num");
+        document.getElementById('message-text').setAttribute("data-boardNum", c)
+
+    }
+
+})
+
+modal_change.addEventListener('click', async ()=>{
+    m = document.getElementById('message-text')
+    console.log(m.value)
+    let f = new FormData();
+    f.append("boardComments", m.value);
+    f.append("boardNum", m.getAttribute("data-boardNum"))
+    
+
+    fetch('./updateComments', {
+        method:'POST',
+        body:f
+    })
+    .then(r=>r.text())
+    .then(r=>{
+        document.getElementById(`c${m.getAttribute("data-boardNum")}`).innerHTML=m.value;
+
+    })
+    .catch(e=>{})
+    .finally(()=>{
+        m.value="";
+        m.setAttribute("data-boardNum", "");
+        //document.getElementById("modal_close").click();
+    });
+    
+
 })

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
       <tr>
         <th>아이디</th>
@@ -13,10 +13,11 @@
     <tbody>
     	<c:forEach items="${list}" var="c">
     		<tr>
-    			<th>${c.username}</th>
-    			<th>${c.boardContents}</th>
-    			<th>${c.boardDate}</th>
-    			<td><button class="btn btn-danger deleteComments">삭제</button></td>
+    			<td>${c.username}</td>
+    			<td id="c${c.boardNum}">${c.boardContents}</td>
+    			<td>${c.boardDate}</td>
+          <td><button class="btn btn-primary updateComments" data-bs-toggle="modal" data-update-num="${c.boardNum}" data-bs-target="#exampleModal">수정</button></td>
+    			<td><button class="btn btn-danger deleteComments" data-delete-num="${c.boardNum}">삭제</button></td>
     		</tr>
     	</c:forEach>
     </tbody>

@@ -18,7 +18,7 @@
 		<h1>${dto.productName}</h1><br><br><br><br>
 		<input type="hidden" name="productNum" id="productNum" value="${dto.productNum}">
 		<label for="exampleFormControlInput1" class="form-label">상세정보</label>
-		<input class="form-control" type="text" name="productDetail" value="${dto.productDetail}" aria-label="Disabled input example" disabled readonly><hr>
+		<h3>${dto.productDetail}</h3><hr>
 		<label for="exampleFormControlInput1" class="form-label">기간</label>
 		<input class="form-control" type="text" name="productDate" value="${dto.productDate}" aria-label="Disabled input example" disabled readonly><hr>
 		<label for="exampleFormControlInput1" class="form-label">이자율</label>
@@ -35,7 +35,7 @@
 		<div class="mb-3">
 			<div class="input-group">
 				<span class="input-group-text">댓글</span>
-				<textarea class="form-control" id="commentContents" aria-label="With textarea"></textarea>
+				<textarea class="form-control" id="commentsContents" aria-label="With textarea"></textarea>
 				<button type="button" id="addComments" data-product-num="${dto.productNum}" class="btn btn-success">댓글 등록</button>
 			  </div>
 		</div>
@@ -43,6 +43,27 @@
 		<div class="mb-3" id="commentsListResult">
 
 
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="message-text" class="col-form-label">Message:</label>
+						<textarea data-boardNum="" class="form-control" id="message-text"></textarea>
+					  </div>
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close" id="modal_close">Close</button>
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" id="modal_change">Save changes</button>
+				</div>
+			</div>
+			</div>
 		</div>
 	</div>
 </div>

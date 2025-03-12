@@ -1,15 +1,19 @@
 package com.woojin.app.products;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.woojin.app.files.FileUpload;
 import com.woojin.app.pages.Pager;
 
 @Service
@@ -17,6 +21,7 @@ public class ProductService {
 	
 	@Autowired
 	private ProductDAO productDAO;
+	private FileUpload fileManager;
 	
 	private static Long count=0L;
 	
@@ -66,7 +71,7 @@ public class ProductService {
 		return productDAO.addComments(commentsDTO);
 	}
 	
-	public List<CommentsDTO> getCommentList(CommentsDTO commentsDTO, Pager pager) throws Exception {
+	public List<CommentsDTO> getCommentsList(CommentsDTO commentsDTO, Pager pager) throws Exception {
 		
 		pager.make(productDAO.countComment(commentsDTO));
 		pager.makeNum();
@@ -75,7 +80,30 @@ public class ProductService {
 		map.put("comments", commentsDTO);
 		map.put("pager", pager);
 		
-		return productDAO.getCommentList(map);
+		return productDAO.getCommentsList(map);
+	}
+	
+	public int deleteComments(CommentsDTO commentsDTO) throws Exception{
+		return productDAO.deleteComments(commentsDTO);
+	}
+	
+	public int updateComments(CommentsDTO commentsDTO) throws Exception{
+		return productDAO.updateComments(commentsDTO);
+	}
+	
+	public String detailFiles(MultipartFile uploadFile, HttpSession session) throws Exception{
+		FileUpload fileManager = new FileUpload();
+		String path = session.getServletContext().getRealPath("/resources/images/products");
+		File file = new File(path);
+		
+		if (file.exists()) {
+			file.mkdirs();
+		}
+		String filename=fileManager.fileUpload(path, uploadFile);
+		System.out.println(filename);
+		System.out.println(path);
+		
+		return filename;
 	}
 
 }

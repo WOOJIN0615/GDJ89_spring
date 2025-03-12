@@ -49,7 +49,7 @@
 			    <tr>
 			      <td>${v.boardNum}</td>
 			      <td>
-			      <a style="color:black; text-decoration: none" href="./detail.do?boardNum=${v.boardNum}">${v.userName}</a></td>
+			      <a style="color:black; text-decoration: none" href="./detail.do?boardNum=${v.boardNum}">${v.username}</a></td>
 			      <td>
 			      		<c:catch>
 			      		<c:forEach begin="1" end="${v.boardDepth}">--</c:forEach>

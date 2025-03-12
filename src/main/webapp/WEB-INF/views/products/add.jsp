@@ -11,6 +11,7 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/template/layout_header.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/summernote.jsp"></c:import>
 
 <div class="container-fluid my-5">
 	<div class="row col-md-8 offset-md-2">
@@ -23,7 +24,7 @@
 		</div>
 		<div class="mb-3">
 		  <label for="exampleFormControlTextarea1" class="form-label">상세 내용</label>
-		  <textarea class="form-control" name="productDetail" id="exampleFormControlTextarea1" rows="3"></textarea>
+		  <textarea class="form-control" name="productDetail" id="detail" rows="3"></textarea>
 		</div>
 		<div class="mb-3">
 			<p>
@@ -49,5 +50,6 @@
 <c:import url="/WEB-INF/views/template/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/template/boot_jsp.jsp"></c:import>
 <script src="/resources/js/add.js"></script>
+<script src="/resources/js/files/summernote.js"></script>
 </body>
 </html>

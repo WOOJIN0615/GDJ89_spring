@@ -55,12 +55,20 @@ public class ProductDAO {
 		return sqlSession.insert(NAMESPACE+"addComments", commentsDTO);
 	}
 	
-	public List<CommentsDTO> getCommentList(Map<String, Object> map) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getCommentList", map);
+	public List<CommentsDTO> getCommentsList(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getCommentsList", map);
 	}
 	
 	public Long countComment(CommentsDTO commentsDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"countComment", commentsDTO);
+	}
+	
+	public int deleteComments(CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"deleteComments", commentsDTO);
+	}
+	
+	public int updateComments(CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"updateComments", commentsDTO);
 	}
 	
 	
