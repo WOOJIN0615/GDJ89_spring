@@ -21,6 +21,7 @@ public class ProductService {
 	
 	@Autowired
 	private ProductDAO productDAO;
+	@Autowired
 	private FileUpload fileManager;
 	
 	private static Long count=0L;
