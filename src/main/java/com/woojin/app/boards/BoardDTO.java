@@ -9,7 +9,7 @@ public class BoardDTO {
 	private Date boardDate;
 	private String boardContents;
 	private Long boardHit;
-	private String userName;
+	private String username;
 	
 
 	public Long getBoardNum() {
@@ -33,6 +33,12 @@ public class BoardDTO {
 	public String getBoardContents() {
 		return boardContents;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public void setBoardContents(String boardContents) {
 		this.boardContents = boardContents;
 	}
@@ -41,11 +47,5 @@ public class BoardDTO {
 	}
 	public void setBoardHit(Long boardHit) {
 		this.boardHit = boardHit;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 }

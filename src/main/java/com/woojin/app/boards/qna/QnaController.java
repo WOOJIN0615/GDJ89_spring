@@ -66,7 +66,7 @@ public class QnaController {
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String add(BoardDTO boardDTO, HttpSession session, MultipartFile[] attaches) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
-		boardDTO.setUserName(userDTO.getUsername());
+		boardDTO.setUsername(userDTO.getUsername());
 		int result = qnaService.add(boardDTO, session, attaches);
 		
 		return "redirect:./list";
@@ -118,7 +118,7 @@ public class QnaController {
 	@RequestMapping(value = "reply", method = RequestMethod.POST)
 	public String reply(QnaDTO boardDTO, HttpSession session) throws Exception {
 		UserDTO userDTO=(UserDTO)session.getAttribute("user");
-		boardDTO.setUserName(userDTO.getUsername());
+		boardDTO.setUsername(userDTO.getUsername());
 		int result = qnaService.reply(boardDTO);
 		
 		return "redirect:./list";

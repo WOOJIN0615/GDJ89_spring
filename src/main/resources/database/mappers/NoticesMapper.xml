@@ -43,7 +43,7 @@
   		<result column="BOARDDATE" property="boardDate"/>
   		<result column="BOARDHIT" property="boardHit"/>
   		<result column="BOARDCONTENTS" property="boardContents"/>
-  		<result column="USERNAME" property="userName"/>
+  		<result column="USERNAME" property="username"/>
   		<!-- 1:N ofType="Generic type" -->
   		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
   			<id column="FILENUM" property="fileNum"/>
@@ -65,7 +65,7 @@
   			(BOARDNUM, BOARDTITLE, BOARDDATE, BOARDCONTENTS, BOARDHIT, USERNAME)
   		VALUES
   			<!-- 시퀀스를 실행하는 것이 아닌 boardNum의 값을 가져옴 -->
-  			(#{boardNum}, #{boardTitle,jdbcType=VARCHAR}, sysdate, #{boardContents,jdbcType=VARCHAR}, 0, #{userName,jdbcType=VARCHAR})	
+  			(#{boardNum}, #{boardTitle,jdbcType=VARCHAR}, sysdate, #{boardContents,jdbcType=VARCHAR}, 0, #{username,jdbcType=VARCHAR})	
   	</insert>
   	<insert id="addFile" parameterType="BoardFileDTO">
   		INSERT INTO NOTICEFILES (FILENUM, FILENAME, OLDNAME, BOARDNUM)

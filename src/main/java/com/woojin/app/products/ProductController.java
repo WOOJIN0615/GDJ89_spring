@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,10 @@ public class ProductController {
 	@Autowired
 	private ProductService productService; 
 	
+	@ModelAttribute("kind")
+	public String getKind() {
+		return "product";
+	}
 	/**
 	 * Model -> requestScope와 Lifecycle이 비슷
 	 * 응답이 발생하면 소멸

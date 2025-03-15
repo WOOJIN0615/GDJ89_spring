@@ -37,7 +37,7 @@
   		<result column="BOARDDATE" property="boardDate"/>
   		<result column="BOARDHIT" property="boardHit"/>
   		<result column="BOARDCONTENTS" property="boardContents"/>
-  		<result column="USERNAME" property="userName"/>
+  		<result column="USERNAME" property="username"/>
   		<result column="BOARDREF" property="boardRef"/>
   		<result column="BOARDSTEP" property="boardStep"/>
   		<result column="BOARDDEPTH" property="boardDepth"/>
@@ -61,7 +61,7 @@
   		INSERT INTO QNA 
   			(BOARDNUM, BOARDTITLE, BOARDDATE, BOARDCONTENTS, BOARDHIT, USERNAME, BOARDREF, BOARDSTEP, BOARDDEPTH)
   		VALUES
-  			(#{boardNum}, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName}, #{boardNum}, 0, 0)	
+  			(#{boardNum}, #{boardTitle}, sysdate, #{boardContents}, 0, #{username}, #{boardNum}, 0, 0)	
   	</insert>
   	<insert id="addFile" parameterType="BoardFileDTO">
   		INSERT INTO QNAFILES (FILENUM, FILENAME, OLDNAME, BOARDNUM)
@@ -71,7 +71,7 @@
   	  	INSERT INTO QNA 
   			(BOARDNUM, BOARDTITLE, BOARDDATE, BOARDCONTENTS, BOARDHIT, USERNAME, BOARDREF, BOARDSTEP, BOARDDEPTH)
   		VALUES
-  			(BOARD_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName}, #{boardRef}, #{boardStep}, #{boardDepth})	
+  			(BOARD_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{username}, #{boardRef}, #{boardStep}, #{boardDepth})	
   	</insert>
   	<update id="updateStep" parameterType="QnaDTO">
   		UPDATE QNA SET

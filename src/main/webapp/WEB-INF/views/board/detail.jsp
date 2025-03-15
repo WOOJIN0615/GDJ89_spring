@@ -16,6 +16,7 @@
 	<div class="row col-md-8 offset-md-2">
 		<!-- contents 내용 작성 -->
 		<h1>${dto.boardTitle}</h1>
+		<h3>${dto.username}</h3>
 		<h3>${dto.boardDate}</h3>
 		<div class="mb-3">
 		  <label for="exampleFormControlTextarea1" class="form-label"></label>
@@ -30,8 +31,10 @@
 		<div class="mb-3" style="justify-content: between">
 			<form id="frm" action="">
 				<input type="hidden" name="boardNum" value="${dto.boardNum}">
-				<button type="button" id="up" class="btn btn-primary">수정</button>
-				<button type="button" id="del" class="btn btn-danger">삭제</button>
+				<c:if test="${dto.username eq user.username}">
+					<button type="button" id="up" class="btn btn-primary">수정</button>
+					<button type="button" id="del" class="btn btn-danger">삭제</button>
+				</c:if>
 				<button type="button" id="rep" class="btn btn-primary">답글</button>
 				<a href="./list" class="btn btn-secondary">목록</a>
 			</form>
