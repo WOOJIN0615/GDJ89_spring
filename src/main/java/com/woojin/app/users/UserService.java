@@ -59,6 +59,8 @@ public class UserService {
 			if (result.getPassword().equals(userDTO.getPassword())){
 				return result;
 			}
+			
+			throw new UsernameException("ID가 틀렸습니다.");
 		}
 		
 		return null;
